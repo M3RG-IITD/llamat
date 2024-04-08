@@ -1,2 +1,2 @@
-# MaScULLM
-Materials Science Understanding Large Language Model
+# MatLLaMA
+Materials Science Large Language Model
