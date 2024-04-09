@@ -1,0 +1,1 @@
+python3 ../Megatron-LLM/tools/preprocess_data.py --input=$1 --output_prefix=$2 --tokenizer_type=SentencePieceTokenizer --vocab_file=./tokenizer.model --chunk_size=32 --workers=16 --no_new_tokens
