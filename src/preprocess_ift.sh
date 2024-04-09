@@ -1,0 +1,11 @@
+python ../Megatron-LLM/tools/preprocess_instruct_data.py \
+	--input=./datasets/${1}_ft.jsonl \
+	--output_prefix=./datasets/$1 \
+	--tokenizer_type=SentencePieceTokenizer \
+	--vocab_file=./tokenizer.model \
+	--vocab_extra_ids_list "<|im_start|>,<|im_end|>" \
+	--chunk_size=32 \
+	--workers=32 \
+	--system_key=system\
+	--question_key=question\
+	--answer_key=answer\

@@ -1,0 +1,1 @@
+python3 Kshot-val-vllm.py --checkpoint $1 --valfile /home/cse/btech/cs1200448/MatLlama/finetune/custom-finetuning-data/Kshot-val.json --mem_util 0.9 --num_gpu 1 --num_seeds 3
