@@ -1,7 +1,7 @@
 #! /bin/bash
 
 SIZE=7
-GPUS_PER_NODE=4
+GPUS_PER_NODE=8
 TP=1
 PP=4
 MICRO_BATCH=2 # per dp batch size.
@@ -16,24 +16,19 @@ MODEL='llama2'
 LR="3e-4"
 MODEL_CONFIG=${MODEL}-${SIZE}b-tp$TP-pp$PP
 
-# LOAD_CHECKPOINT_PATH=/
-# LOAD_CHECKPOINT_PATH=/scratch/scai/msr/aiy217586/llama-2-70b-hf_meditron
-LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b
-# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/redp-from-scratch
-SAVE_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/${EXP_NAME}
+LOAD_CHECKPOINT_PATH=_/
+SAVE_CHECKPOINT_PATH=_/${EXP_NAME}
 TENSORBOARD_PATH=/
 
-TRAIN_DATA_PATH=/scratch/cse/btech/cs1200448/MatLlama/redP_split/train_text_document
-VALID_DATA_PATH=/scratch/cse/btech/cs1200448/MatLlama/new_ds_plain/val_text_document
-TEST_DATA_PATH=/scratch/cse/btech/cs1200448/MatLlama/redP_split/val_text_document
+TRAIN_DATA_PATH=_/train_text_document
+VALID_DATA_PATH=_/val_text_document
+TEST_DATA_PATH=_/val_text_document
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $N_NODES --node_rank $RANK --master_addr $ADDR"
 
 TOKENIZER=SentencePieceTokenizer
 
 EXTRA_ARGS='--vocab_file=./tokenizer.model --use_rms_norm --glu_activation swiglu --no_tie_embed_logits --no_new_tokens --clip_grad 1.0'
-
-# EXTRA_ARGS='--vocab_file=/scratch/cse/btech/cs1200448/llama-weights/7b/tokenizer.model --use_rms_norm --glu_activation swiglu --no_tie_embed_logits --num_layers 80 --hidden_size 8192 --num_attention_heads 64 --ffn_hidden_size 28672'
          
 SEQ_LEN=2048 # ctx length
 EXTRA_ARGS="$EXTRA_ARGS --layernorm_epsilon 1e-5"
@@ -43,8 +38,10 @@ fi
 
 # TRAIN_TOKENS=962319047 # redP
 # TRAIN_TOKENS=412055787 #msb
-TRAIN_TOKENS=848423364 #newds
-EVAL_TOKENS=414815173
+# TRAIN_TOKENS=848423364 #newds
+# EVAL_TOKENS=414815173
+TRAIN_TOKENS=_
+EVAL_TOKENS=_
 
 TRAIN_SEQS=$((TRAIN_TOKENS/SEQ_LEN))
 EVAL_SEQS=$((EVAL_TOKENS/SEQ_LEN))
