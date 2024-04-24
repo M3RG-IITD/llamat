@@ -339,7 +339,7 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
                 "parallel_attn": False,
                 "make_vocab_size_divisible_by": 128,
                 "glu_activation": "swiglu",
-                "padded_vocab_size": 32128,
+                "padded_vocab_size": 32000,
                 "use_rms_norm": True,
                 "tie_embed_logits": False,
                 "tokenizer_type": "SentencePieceTokenizer"}
@@ -419,6 +419,7 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
 
 
 if __name__ == "__main__":
+
     parser = ArgumentParser(description="Convert Huggingface llama or falcon weights to "
                                         "megatron-compatible weights")
     parser.add_argument("model", choices={"falcon", "llama", "llama2", "codellama", "mistral"})

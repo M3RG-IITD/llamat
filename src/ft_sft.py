@@ -18,8 +18,16 @@ def execute(cmd: list[str]):
 def get_parallel_levels():
     return 1, 4
 
-def infer_ndocs(cmd: list[str]) -> int:
-    return 8600
+def infer_ndocs(cmd: list[str], args) -> int:
+    return args.numdocs
+    # with open(args.data, 'r') as f:
+    #     return (len(f.readlines()))
+    
+    # return 19942 #downstream train
+    # return 170594 #downstream val
+    # return 43841 #ift train
+    # return 2307 #ift val
+    # return 10581 #downstream old
 
 def finetune(args: Namespace):
     load_from = args.checkpoint
@@ -34,12 +42,15 @@ def finetune(args: Namespace):
            "--out", args.save_checkpoint_dir, "--loss-mask", 0.0, "--save-interval", args.save_interval]
 
     cmd = list(map(str, cmd))
-    n_docs = infer_ndocs(cmd)
+    n_docs = infer_ndocs(cmd, args)
     n_iters = args.epochs*n_docs/64
+    print(n_docs, n_iters)
     n_iters = 10*int(math.ceil(n_iters/10))  # to make it a multiple of 10 xd
     if args.load_iters != 'release':
         cmd += ["--it", args.load_iters]
     cmd += ["--iters", n_iters]
+    cmd += ["--data", args.traindata]
+    cmd += ["--val-path", args.valdata]
 
     if args.nodes > 1:
         cmd += ["--nodes", args.nodes, "--rank", args.rank, "--addr", args.addr]
@@ -55,6 +66,9 @@ def main(args: Namespace):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
+    parser.add_argument("--traindata")
+    parser.add_argument("--valdata")
+    parser.add_argument("--numdocs", type=int)
     parser.add_argument("--checkpoint", help="Name of the model to finetune")
     parser.add_argument("--load_iters", help="Which iteration to finetune")
     parser.add_argument("--save_checkpoint_dir", type=str, help="Directory to save the trained checkpoint")

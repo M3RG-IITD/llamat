@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file1="/scratch/civil/phd/cez198233/vaibhav_nlp/corpus/corpus_training/train10.jsonl"
+file1="/scratch/civil/phd/cez198233/vaibhav_nlp/corpus/corpus_training/train_10.jsonl"
 file2="/scratch/civil/phd/cez198233/vaibhav_nlp/corpus/corpus_training/redP.jsonl"
 
 # Define the number of lines to extract in each chunk

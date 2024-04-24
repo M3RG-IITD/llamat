@@ -1,6 +1,6 @@
 python ../Megatron-LLM/tools/preprocess_instruct_data.py \
-	--input=./datasets/${1}_ft.jsonl \
-	--output_prefix=./datasets/$1 \
+	--input=../datasets/ift/${1}.jsonl \
+	--output_prefix=../datasets/ift/$1 \
 	--tokenizer_type=SentencePieceTokenizer \
 	--vocab_file=./tokenizer.model \
 	--vocab_extra_ids_list "<|im_start|>,<|im_end|>" \

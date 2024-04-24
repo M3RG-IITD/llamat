@@ -86,6 +86,7 @@ for seed in range(1,args.num_seeds+1):
     kw["re"] = {i : [] for i in ["structured_re", "sc_comics"]}
     kw["sar"] = {i : [] for i in ["synthesis_actions"]}
     kw["sc"] = {i : [] for i in ["sofc_sent"]}
+    kw["mcq"] = {i : [] for i in ["story_cloze", "hellaswag", "boolqa"]}
     
     kw['ner']['matscholar'] = ['b-mat','i-mat','b-pro','i-pro','b-dsc','i-dsc','b-spl','i-spl','b-apl','i-apl','b-smt','i-smt','b-cmt','i-cmt']
     kw['ner']['sofc_token'] = ['b-material', 'i-material', 'b-device', 'i-device', 'b-experiment', 'i-experiment', 'b-value', 'i-value']
@@ -97,6 +98,10 @@ for seed in range(1,args.num_seeds+1):
     kw['re']['sc_comics'] = ['target', 'condition', 'equivalent']
     kw['sar']['synthesis_actions'] = ['cooling', 'heating', 'mixing', 'non-altering', 'purification', 'reaction', 'shaping', 'starting']
     kw['sc']['sofc_sent'] = ['yes','no']
+    
+    kw['mcq']['hellaswag'] = ['a','b','c','d']
+    kw['mcq']['boolqa'] = ['yes','no']
+    kw['mcq']['story_cloze'] = ['a','b']
 
     def most_similar_answer(a,answer_set):
         a = a.strip().replace(' ', '')
@@ -115,15 +120,19 @@ for seed in range(1,args.num_seeds+1):
     out_dict["sar"] = {i : [] for i in ["synthesis_actions"]}
     out_dict["sc"] = {i : [] for i in ["sofc_sent"]}
     out_dict["qna"] = {i : [] for i in ["squad"]}
+    out_dict["mcq"] = {i : [] for i in ["hellaswag", "boolqa", "story_cloze"]}
 
     for _,sent in enumerate(valfile):
         task = None
         dataset = None
+        # task = sent['task']
+        # dataset = sent['dataset']
         system = sent['system']
         output = predictions[_]
         if len(output) == 0: # cases with prompt length > ctxlen
             continue
         answer = sent['answer']
+        
         if 'SOFC' in system:
             task = 'sc'
             dataset = 'sofc_sent'
@@ -153,6 +162,15 @@ for seed in range(1,args.num_seeds+1):
         elif 'inorganic glass' in system:
             task = 'pc'
             dataset = 'glass_non_glass'
+        elif 'option most likely to be correct' in system:
+            task = 'mcq'
+            dataset = 'hellaswag'
+        elif 'You are a linguist with reasoning abilities. Read the passage given below and using its information determine whether the answer to the question that follows it is Yes or No. You should output exactly one of Yes or No and nothing else.' in system:
+            task = 'mcq'
+            dataset = 'boolqa'
+        elif 'story' in system:
+            task = 'mcq'
+            dataset = 'story_cloze'
         else:
             task = 'qna'
             dataset = 'squad'
@@ -183,6 +201,7 @@ for seed in range(1,args.num_seeds+1):
     scores["sar"] = {i : (0,0) for i in ["synthesis_actions"]}
     scores["sc"] = {i : (0,0) for i in ["sofc_sent"]}
     scores["qna"] = {i : (0,0) for i in ["squad"]}
+    scores["mcq"] = {i : (0,0) for i in ["hellaswag", "boolqa", "story_cloze"]}
 
     def evaluate(task, dataset):
         all_gt = []
@@ -306,6 +325,13 @@ for seed in range(1,args.num_seeds+1):
         
         return out_eval
 
+    def evaluate_mcq(dataset):
+        out_dict['mcq'][dataset] = [(most_similar_answer(i[0], kw['mcq'][dataset]), most_similar_answer(i[1], kw['mcq'][dataset])) for i in out_dict['mcq'][dataset]]
+        micro_f1 = f1_score(*list(zip(*out_dict['mcq'][dataset])), average='micro', labels = list(kw['mcq'][dataset]))
+        macro_f1 = f1_score(*list(zip(*out_dict['mcq'][dataset])), average='macro', labels = list(kw['mcq'][dataset]))
+        scores['mcq'][dataset] = micro_f1, macro_f1
+        return micro_f1, macro_f1
+
     if len(out_dict['qna']['squad']) > 0:
         evaluate_qna('squad')
     if len(out_dict['ner']['matscholar']) > 0:
@@ -328,6 +354,12 @@ for seed in range(1,args.num_seeds+1):
         evaluate_re('structured_re')
     if len(out_dict['re']['sc_comics']) > 0:
         evaluate_re('sc_comics')
+    if len(out_dict['mcq']['hellaswag']) > 0:
+        evaluate_mcq('hellaswag')
+    if len(out_dict['mcq']['boolqa']) > 0:
+        evaluate_mcq('boolqa')
+    if len(out_dict['mcq']['story_cloze']) > 0:
+        evaluate_mcq('story_cloze')
 
     df = pd.DataFrame.from_dict({(i,j): scores[i][j] for i in scores.keys() for j in scores[i].keys()},orient='index', columns = ['micro-f1/f1', 'macro-f1/em'])
     df = df.apply(lambda x: 100 * round(x, 5))

@@ -103,7 +103,7 @@ fi
 
 COMMON_ARGS="--use_flash_attn --no_bias_gelu_fusion
 	     --seq_length $SEQ_LEN
-         --log_interval 1 --save_interval $SAVE_INTERVAL --eval_interval 500
+         --log_interval 1 --save_interval $SAVE_INTERVAL --eval_interval 1000000000
          --eval_iters 10 --hidden_dropout 0.0 --position_embedding_type rotary
 	     --no_bias_dropout_fusion --use_checkpoint_args
 	     --attention_dropout 0.0 --adam_beta1 0.9 --adam_beta2 0.95 --adam_eps 1e-5
@@ -120,8 +120,8 @@ fi
 
 COMMON_ARGS="$COMMON_ARGS --train_iters $ITERS"
 
-DATA_PATH=./datasets/train
-VAL_PATH=./datasets/val
+# DATA_PATH=../datasets/downstream/train
+# VAL_PATH=../datasets/downstream/val
 
 if [[ $VAL_PATH = none ]]; then
 	DATA_ARGS="--data_path $DATA_PATH"
