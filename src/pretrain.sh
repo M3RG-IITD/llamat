@@ -5,7 +5,7 @@ GPUS_PER_NODE=8
 TP=1
 PP=4
 MICRO_BATCH=2 # per dp batch size.
-GLOBAL_BATCH=512 # micro * dp * grad_accum
+GLOBAL_BATCH=1024 # micro * dp * grad_accum
 RANK=0
 N_NODES=1
 ADDR=localhost
@@ -22,7 +22,7 @@ TENSORBOARD_PATH=/
 
 TRAIN_DATA_PATH=_/train_text_document
 VALID_DATA_PATH=_/val_text_document
-TEST_DATA_PATH=_/val_text_document
+TEST_DATA_PATH=_/redp_val_text_document
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $N_NODES --node_rank $RANK --master_addr $ADDR"
 
@@ -36,28 +36,26 @@ if (( $SIZE > 13 )); then  # llama 2, 34B and 70B
         LR="1.5e-4"
 fi
 
-# TRAIN_TOKENS=962319047 # redP
-# TRAIN_TOKENS=412055787 #msb
-# TRAIN_TOKENS=848423364 #newds
-# EVAL_TOKENS=414815173
-TRAIN_TOKENS=_
-EVAL_TOKENS=_
+TRAIN_TOKENS=30135507860
+EVAL_TOKENS=514977472
+TEST_TOKENS=68328730
 
 TRAIN_SEQS=$((TRAIN_TOKENS/SEQ_LEN))
 EVAL_SEQS=$((EVAL_TOKENS/SEQ_LEN))
+TEST_SEQS=$((TEST_TOKENS/SEQ_LEN))
 
 TRAIN_ITERS=$((TRAIN_SEQS/GLOBAL_BATCH))
-EVAL_ITERS=20
-TEST_ITERS=20
+EVAL_ITERS=$((EVAL_SEQS/GLOBAL_BATCH))
+TEST_ITERS=$((TEST_SEQS/GLOBAL_BATCH))
 
 COMMON_ARGS="$COMMON_ARGS --use_flash_attn --no_bias_gelu_fusion
 		--seq_length $SEQ_LEN --max_position_embeddings 4096
-		--log_interval 1 --eval_interval 100 --save_interval 100
+		--log_interval 1 --eval_interval 500 --save_interval 500
 		--use_checkpoint_args --hidden_dropout 0.0
 		--position_embedding_type rotary
 		--no_bias_dropout_fusion --attention_dropout 0.0
 		--adam_beta1 0.9 --adam_beta2 0.95 --adam_eps 1e-5
-		--lr_decay_style cosine --lr_warmup_iters 120 --lr $LR --min_lr 3e-5
+		--lr_decay_style cosine --lr_warmup_iters 2000 --lr $LR --min_lr 3e-5
 		--weight_decay 0.1 --sequence_parallel --recompute_granularity selective
 		--log_validation_ppl_to_tensorboard
         --log_memory_to_tensorboard
