@@ -92,7 +92,7 @@ def _load_checkpoint(queue, args):
     if args.model_type == 'GPT':
         from pretrain_gpt import model_provider
         margs.model_type = ModelType.encoder_or_decoder
-    elif args.model_type in {"falcon", "llama", "llama2", "codellama", "mistral"}:
+    elif args.model_type in {"falcon", "llama", "llama2", "codellama", "mistral", "llama3"}:
         from finetune import model_provider
         margs.model_name = args.model_type
         margs.model_type = ModelType.encoder_or_decoder
@@ -175,6 +175,7 @@ def _load_checkpoint(queue, args):
     md.previous_pipeline_parallel_size = margs.pipeline_model_parallel_size
     md.true_vocab_size = true_vocab_size
     md.make_vocab_size_divisible_by = margs.make_vocab_size_divisible_by
+    md.rope_theta = margs.rope_theta
     md.num_attention_heads_kv = margs.num_attention_heads_kv
     md.parallel_attn = margs.parallel_attn
     md.parallel_layernorm = margs.parallel_layernorm

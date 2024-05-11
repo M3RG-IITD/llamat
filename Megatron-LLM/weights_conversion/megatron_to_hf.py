@@ -474,35 +474,39 @@ def write_falcon_model(
 
 
 def write_tokenizer(args: Namespace):
-    if args.model in {"llama", "llama2", "codellama", "mistral"}:
-        # mistral also use LlamaTokenizerFast
-        args.tokenizer_type = "SentencePieceTokenizer"
-        if args.vocab_file:
-            # prevent "single file or url is deprecated and won't be possible anymore in v5" warning,
-            # use parent directory instead
-            p = Path(args.vocab_file)
-            if p.suffix == ".model":
-                p = p.parent
-            hf_tokenizer = LlamaTokenizerFast.from_pretrained(p)
-            args.vocab_file = hf_tokenizer.vocab_file
+    if args.model in {"llama", "llama2", "codellama", "mistral", "llama3"}:
+        if args.model == "llama3":
+            print("Not setting the tokenizer. Do it yourself by copying the 4 tokenizer files from base model.")
+            return
         else:
-            if args.model == "codellama":
-                hf_repo_name = "TheBloke/CodeLlama-13B-fp16"
-            elif args.model == "mistral":
-                hf_repo_name = "mistralai/Mistral-7B-v0.1"
-            else:
-                hf_repo_name = "meta-llama/Llama-2-7b-hf"
-            try:  # try loading from huggingface
-                hf_tokenizer = LlamaTokenizerFast.from_pretrained(hf_repo_name,
-                                                            cache_dir=args.cache_dir)
-                print("LlamaTokenizerFast loaded from huggingface")
-                print("vocab_file not set, assuming same tokenizer.model used "
-                      "by llama LlamaTokenizerFast")
+            # mistral also use LlamaTokenizerFast
+            args.tokenizer_type = "SentencePieceTokenizer"
+            if args.vocab_file:
+                # prevent "single file or url is deprecated and won't be possible anymore in v5" warning,
+                # use parent directory instead
+                p = Path(args.vocab_file)
+                if p.suffix == ".model":
+                    p = p.parent
+                hf_tokenizer = LlamaTokenizerFast.from_pretrained(p)
                 args.vocab_file = hf_tokenizer.vocab_file
-            except OSError:
-                print(f"ERROR: Could not load tokenizer from HF repo '{hf_repo_name}'. "
-                      "Tokenizer processing failed.")
-                return
+            else:
+                if args.model == "codellama":
+                    hf_repo_name = "TheBloke/CodeLlama-13B-fp16"
+                elif args.model == "mistral":
+                    hf_repo_name = "mistralai/Mistral-7B-v0.1"
+                else:
+                    hf_repo_name = "meta-llama/Llama-2-7b-hf"
+                try:  # try loading from huggingface
+                    hf_tokenizer = LlamaTokenizerFast.from_pretrained(hf_repo_name,
+                                                                cache_dir=args.cache_dir)
+                    print("LlamaTokenizerFast loaded from huggingface")
+                    print("vocab_file not set, assuming same tokenizer.model used "
+                          "by llama LlamaTokenizerFast")
+                    args.vocab_file = hf_tokenizer.vocab_file
+                except OSError:
+                    print(f"ERROR: Could not load tokenizer from HF repo '{hf_repo_name}'. "
+                          "Tokenizer processing failed.")
+                    return
     else:
         hf_tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-40b", cache_dir=args.cache_dir)
         args.tokenizer_type = "FalconTokenizer"
@@ -577,7 +581,7 @@ def main():
     parser.add_argument("--input_dir", help="Location of Megatron weights",
                         required=True)
     parser.add_argument("--num_output_shards", type=int, default=1)
-    parser.add_argument("--model", choices={"falcon", "llama", "llama2", "codellama", "mistral"},
+    parser.add_argument("--model", choices={"falcon", "llama", "llama2", "llama3", "codellama", "mistral"},
                          default="llama2")
     parser.add_argument("--output_dir", help="Location to write HF model and tokenizer",
                         required=True)
@@ -591,9 +595,11 @@ def main():
                               "Overrides available only bos, cls, eos, mask, pad, sep, unk."))
     
     args = parser.parse_args()
-    if args.model in {"llama", "llama2", "codellama"}:
+    if args.model in {"llama", "llama2", "codellama", "llama3"}:
         eps = 1e-6 if args.model == "llama" else 1e-5
         rope_theta = 1e6 if args.model == "codellama" else 1e4
+        if args.model == "llama3":
+            rope_theta = 5e5
         write_llama_model(
             model_path=args.output_dir,
             input_base_path=args.input_dir,

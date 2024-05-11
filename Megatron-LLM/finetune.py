@@ -16,7 +16,7 @@ from megatron.data.instruction_dataset import instruction_collator
 from megatron.data.instruction_dataset import build_train_valid_test_datasets as instruct_build_datasets
 from megatron.initialize import initialize_megatron
 from megatron.metrics import MetricInput, get_metric
-
+from megatron.arguments import _print_args
 
 ##
 # Model provider utilities
@@ -33,7 +33,7 @@ def model_provider(pre_process: bool = True, post_process: bool = True):
         cls = GPTModel
     elif args.model_name == "falcon":
         cls = FalconModel
-    elif args.model_name in {"llama", "llama2", "codellama"}:
+    elif args.model_name in {"llama", "llama2", "codellama", "llama3"}:
         cls = partial(LlamaModel, version=1 if args.model_name == "llama" else 2)
     elif args.model_name == "mistral":
         cls = MistralModel
@@ -243,7 +243,7 @@ def extra_args(parser):
     """Text generation arguments."""
     group = parser.add_argument_group(title='validation set')
     group.add_argument("--model_name",
-                       choices={"gpt", "llama", "falcon", "llama2", "codellama", "mistral"},
+                       choices={"gpt", "llama", "falcon", "llama2", "codellama", "mistral", "llama3"},
                        default="gpt")
     group.add_argument("--model_type", choices={"encoder_or_decoder", "encoder_and_decoder"},
                        default="encoder_or_decoder")
@@ -253,18 +253,17 @@ def extra_args(parser):
     group.add_argument("--log_loss_scale_to_tensorboard", type=bool, default=True)
     return parser
 
-
 if __name__ == "__main__":
     args_defaults = {"tokenizer_type": "GPT2BPETokenizer"}
     initialize_megatron(extra_args, args_defaults)
-    print("Initialized")
+    
     args = get_args()
-
+    if args.rank == 0:
+        _print_args(args)
     if args.data_type == "gpt":
         collate_fn = None
     else:
         collate_fn = instruction_collator
-
 
     pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
              forward_step, collate_fn=collate_fn)

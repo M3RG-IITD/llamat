@@ -62,7 +62,7 @@ def save_checkpoint(queue, args):
             exit(1)
 
     md = queue_get()
-
+    
     if args.target_tensor_parallel_size is None:
         if hasattr(md, 'previous_tensor_parallel_size'):
             args.target_tensor_parallel_size = md.previous_tensor_parallel_size
@@ -110,8 +110,11 @@ def save_checkpoint(queue, args):
                 '--save', args.save_dir,
                 '--ffn_hidden_size', str(md.ffn_hidden_size)
                 ]
+    
     if md.num_attention_heads_kv is not None:
         sys.argv += ["--num_attention_heads_kv", str(md.num_attention_heads_kv)]
+    if md.rope_theta:
+        sys.argv += ["--rope_theta", str(md.rope_theta)]
     if md.parallel_attn:
         sys.argv += ["--parallel_attn"]
     if md.parallel_layernorm:
@@ -133,12 +136,11 @@ def save_checkpoint(queue, args):
         sys.argv.append('--fp16')
     elif md.params_dtype == torch.bfloat16:
         sys.argv.append('--bf16')
-
+        
     margs = megatron.arguments.parse_args()
     megatron.arguments.validate_args(margs)
     set_global_variables(margs)
     margs = get_args()
-
     if hasattr(md, 'consumed_train_samples'):
         margs.consumed_train_samples = md.consumed_train_samples
         margs.consumed_valid_samples = md.consumed_valid_samples
@@ -154,7 +156,7 @@ def save_checkpoint(queue, args):
     elif md.model_type == 'BERT':
         from pretrain_bert import model_provider
         margs.model_type = ModelType.encoder_or_decoder
-    elif md.model_type in {'falcon', 'llama', 'llama2', 'codellama', 'mistral'}:
+    elif md.model_type in {'falcon', 'llama', 'llama2', 'codellama', 'mistral', 'llama3'}:
         from finetune import model_provider
         margs.model_name = args.model_type
         margs.model_type = ModelType.encoder_or_decoder
@@ -399,4 +401,9 @@ def save_checkpoint(queue, args):
         for tp_rank in range(args.target_tensor_parallel_size):
             mpu.set_tensor_model_parallel_rank(tp_rank)
             save_checkpoint(md.iteration, [models[tp_rank]], None, None)
+            
+    print("=====Final=====")
+    print(margs)
+    print("=====Earlier=====")
+    print(md)
     print("Done!")

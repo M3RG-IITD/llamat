@@ -43,7 +43,6 @@ def parse_args(extra_args_provider=None):
         parser = extra_args_provider(parser)
 
     args = parser.parse_args()
-
     # Args from environment
     args.rank = int(os.getenv('RANK', '0'))
     args.world_size = int(os.getenv("WORLD_SIZE", '1'))
@@ -346,7 +345,7 @@ def validate_args(args, defaults={}):
             raise RuntimeError(
                 "Using async gradient all reduce requires setting the environment "
                 "variable CUDA_DEVICE_MAX_CONNECTIONS to 1")
-    _print_args(args)
+    # _print_args(args)
     return args
 
 
@@ -967,7 +966,8 @@ def _add_data_args(parser):
                        help="Dataloader number of workers.")
     group.add_argument('--tokenizer_type', type=str,
                        default=None,
-                       choices=['BertWordPieceLowerCase',
+                       choices=['Tiktoken',
+                           'BertWordPieceLowerCase',
                                 'BertWordPieceCase',
                                 'GPT2BPETokenizer',
                                 'SentencePieceTokenizer',

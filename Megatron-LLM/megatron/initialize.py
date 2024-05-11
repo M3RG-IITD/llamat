@@ -31,7 +31,6 @@ def initialize_megatron(extra_args_provider=None,
     data processing. In general this arg should not be set unless you know 
     what you are doing.
     """
-    print("Megatron was initialized")
     # Make sure cuda is available.
     assert torch.cuda.is_available(), 'Megatron requires CUDA.'
 
@@ -43,7 +42,6 @@ def initialize_megatron(extra_args_provider=None,
         load_args_from_checkpoint(args)
 
     megatron.arguments.validate_args(args, args_defaults)
-        
     # set global args, build tokenizer, and set adlr_autoresume,
     # tensorboard-writer, and timers.
     set_global_variables(args)
@@ -56,12 +54,10 @@ def initialize_megatron(extra_args_provider=None,
         if args.rank == 0:
             print('> setting random seeds to {} ...'.format(args.seed))
         _set_random_seed(args.seed, args.data_parallel_random_init)
-
     # Megatron's MPU is the master. Complete initialization right away.
     _finish_mpu_init()
     _init_autoresume()
     # _compile_dependencies(args)
-
     # No continuation function
     return None
 

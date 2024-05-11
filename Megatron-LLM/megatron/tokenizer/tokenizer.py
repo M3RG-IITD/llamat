@@ -35,14 +35,14 @@ def build_tokenizer(args):
                                             vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
     elif args.tokenizer_type == 'FalconTokenizer':
         tokenizer = _FalconTokenizer(vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+    elif args.tokenizer_type == 'Tiktoken':
+        tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
     else:
         raise NotImplementedError('{} tokenizer is not '
                                   'implemented.'.format(args.tokenizer_type))
 
     # Add vocab size.
-    args.padded_vocab_size = _vocab_size_with_padding(tokenizer.vocab_size,
-                                                      args)
-
+    # args.padded_vocab_size = _vocab_size_with_padding(tokenizer.vocab_size,args)
     return tokenizer
 
 
@@ -456,6 +456,208 @@ class _SentencePieceTokenizer(AbstractTokenizer):
                 last_i = i + 1
         text += self._tokenizer.decode_ids(ids[last_i:])
         return text.strip()
+
+    @property
+    def cls(self):
+        return self._cls_id
+
+    @property
+    def sep(self):
+        return self._sep_id
+
+    @property
+    def pad(self):
+        return self._pad_id
+
+    @property
+    def bos_token_id(self):
+        return self._bos_id
+
+    @property
+    def bos(self):
+        return self._bos_id
+
+    @property
+    def eod(self):
+        if self._eod_id is not None:
+            return self._eod_id
+        return self._eos_id  # in case noe eod we can patch this up with an eos
+
+    @property
+    def eos_token_id(self):
+        if self._eod_id is not None:
+            return self._eod_id
+        return self._eos_id
+
+    @property
+    def eos(self):
+        return self._eos_id
+
+    @property
+    def mask(self):
+        return self._mask_id
+
+    @property
+    def additional_special_tokens_ids(self):
+        return [self.vocab[k] for k in self._t5_tokens]
+
+import tiktoken
+from tiktoken.load import load_tiktoken_bpe
+from pathlib import Path
+
+class _Tiktoken(AbstractTokenizer):
+    """Tiktoken-Megatron wrapper"""
+
+    def __init__(self, model_file, vocab_extra_ids=0, vocab_extra_ids_list=None, new_tokens=True):
+        name = 'Tiktoken'
+        super().__init__(name)
+
+        import tiktoken
+        self.model_path = model_file
+        self._tokenizer = load_tiktoken_bpe(self.model_path)
+        self.pat_str = r"(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"
+        self.num_base_tokens = len(self._tokenizer)
+        self.num_reserved_special_tokens = 256
+        
+        special_tokens = [
+                    "<|begin_of_text|>",
+                    "<|end_of_text|>",
+                    "<CLS>",
+                    "<SEP>",
+                    "<EOD>",
+                    "<MASK>",
+                    "<|start_header_id|>",
+                    "<|end_header_id|>",
+                    "<PAD>",
+                    "<|eot_id|>",  # end of turn
+                ]
+        if vocab_extra_ids_list:
+            for t in vocab_extra_ids_list.split(","):
+                special_tokens += [t]
+            
+        special_tokens += [
+                f"<|reserved_special_token_{i}|>"
+                for i in range(0, self.num_reserved_special_tokens - len(special_tokens))
+            ]
+        
+        self._special_tokens = {
+            token: self.num_base_tokens + i for i, token in enumerate(special_tokens)
+        }
+        self._inv_special_tokens = {
+            self.num_base_tokens + i : token for i, token in enumerate(special_tokens)
+        }
+        # print("Special tokens: {}".format(self._special_tokens))
+        
+        self.model = tiktoken.Encoding(
+            name=Path(self.model_path).name,
+            pat_str=self.pat_str,
+            mergeable_ranks=self._tokenizer,
+            special_tokens=self._special_tokens,
+        )
+        
+        self._initalize(None, None, None)
+        for token, id in self._special_tokens.items():
+            self._vocab[token] = id
+            self._inv_vocab[id] = token
+
+    def _initalize(self, vocab_extra_ids, vocab_extra_ids_list, new_tokens):
+        self._vocab = {}
+        self._inv_vocab = {}
+
+        self._t5_tokens = []
+
+        for token,id in self._tokenizer.items():
+            self._inv_vocab[id] = token
+            self._vocab[token] = id
+
+        self._cls_id = self._vocab.get('<CLS>')
+        self._sep_id = self._vocab.get('<SEP>')
+        self._eod_id = self._vocab.get('<EOD>')
+        self._mask_id = self._vocab.get('<MASK>')
+
+        pad_token = '<PAD>'
+        self._pad_id = self._vocab.get(pad_token)
+
+        self._bos_id = self._vocab.get('<|begin_of_text|>')
+        self._eos_id = self._vocab.get('<|end_of_text|>')
+
+    @property
+    def vocab_size(self):
+        return len(self._vocab)
+
+    @property
+    def vocab(self):
+        return self._vocab
+
+    @property
+    def inv_vocab(self):
+        return self._inv_vocab
+
+    @staticmethod
+    def _split_whitespaces_or_nonwhitespaces(s: str, max_consecutive_slice_len: int):
+        """
+        Splits the string `s` so that each substring contains no more than `max_consecutive_slice_len`
+        consecutive whitespaces or consecutive non-whitespaces.
+        """
+        current_slice_len = 0
+        current_slice_is_space = s[0].isspace() if len(s) > 0 else False
+        slice_start = 0
+
+        for i in range(len(s)):
+            is_now_space = s[i].isspace()
+
+            if current_slice_is_space ^ is_now_space:
+                current_slice_len = 1
+                current_slice_is_space = is_now_space
+            else:
+                current_slice_len += 1
+                if current_slice_len > max_consecutive_slice_len:
+                    yield s[slice_start:i]
+                    slice_start = i
+                    current_slice_len = 1
+        yield s[slice_start:]
+        
+    # From:
+    # https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py
+    def tokenize(self, s, allowed_special= set(), disallowed_special= ()):
+        # print(s)
+        assert type(s) is str
+
+        # The tiktoken tokenizer can handle <=400k chars without
+        # pyo3_runtime.PanicException.
+        TIKTOKEN_MAX_ENCODE_CHARS = 400_000
+
+        # https://github.com/openai/tiktoken/issues/195
+        # Here we iterate over subsequences and split if we exceed the limit
+        # of max consecutive non-whitespace or whitespace characters.
+        MAX_NO_WHITESPACES_CHARS = 25_000
+
+        substrs = (
+            substr
+            for i in range(0, len(s), TIKTOKEN_MAX_ENCODE_CHARS)
+            for substr in self._split_whitespaces_or_nonwhitespaces(
+                s[i : i + TIKTOKEN_MAX_ENCODE_CHARS], MAX_NO_WHITESPACES_CHARS
+            )
+        )
+        t: List[int] = []
+        for substr in substrs:
+            t.extend(
+                self.model.encode(
+                    substr,
+                    allowed_special=allowed_special,
+                    disallowed_special=disallowed_special,
+                )
+            )
+        # if bos:
+            # t.insert(0, self.bos_id)
+        # if eos:
+            # t.append(self.eos_id)
+        return t
+
+    # From:
+    # https://github.com/meta-llama/llama3/blob/main/llama/tokenizer.py
+    def detokenize(self, ids):
+        return self.model.decode(ids)
 
     @property
     def cls(self):

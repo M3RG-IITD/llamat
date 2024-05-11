@@ -95,7 +95,7 @@ def get_args():
     group = parser.add_argument_group(title='tokenizer')
     group.add_argument('--tokenizer_type', type=str, required=True,
                        choices=['BertWordPieceLowerCase','BertWordPieceCase',
-                                'GPT2BPETokenizer', 'SentencePieceTokenizer', 'FalconTokenizer'],
+                                'GPT2BPETokenizer', 'SentencePieceTokenizer', 'FalconTokenizer', 'Tiktoken'],
                        help='What type of tokenizer to use.')
     group.add_argument('--vocab_file', type=str, default=None,
                        help='Path to the vocab file')

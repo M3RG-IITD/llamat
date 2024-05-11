@@ -1,0 +1,246 @@
+Special tokens: {'<s>': 1, '</s>': 2}
+WARNING: TensorBoard writing requested but is not available (are you using PyTorch 1.1.0 or later?), no TensorBoard logs will be written.
+Special tokens: {'<s>': 1, '</s>': 2}
+Special tokens: {'<s>': 1, '</s>': 2}
+Special tokens: {'<s>': 1, '</s>': 2}
+This is the arguments from the loaded checkpoint.
+Namespace(num_layers=32, encoder_num_layers=32, decoder_num_layers=None, hidden_size=4096, ffn_hidden_size=11008, num_attention_heads=32, num_attention_heads_kv=32, kv_channels=128, max_position_embeddings=4096, make_vocab_size_divisible_by=128, layernorm_epsilon=1e-05, apply_residual_connection_post_layernorm=False, use_bias=False, use_rms_norm=True, use_post_ln=False, onnx_safe=None, glu_activation='swiglu', position_embedding_type=<PositionEmbeddingType.rotary: 1>, rope_scaling_factor=1.0, rope_theta=10000.0, parallel_attn=False, parallel_layernorm=False, tie_embed_logits=False, sliding_window_size=None, attention_dropout=0.1, hidden_dropout=0.1, lima_dropout=False, weight_decay=0.01, start_weight_decay=0.01, end_weight_decay=0.01, weight_decay_incr_style='constant', clip_grad=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_eps=1e-08, sgd_momentum=0.9, micro_batch_size=1, global_batch_size=1, rampup_batch_size=None, recompute_granularity=None, distribute_saved_activations=False, recompute_method=None, recompute_num_layers=1, train_iters=None, skip_iters=[], train_samples=None, log_interval=100, exit_interval=None, exit_duration_in_mins=None, exit_signal_handler=False, tensorboard_dir=None, masked_softmax_fusion=False, bias_gelu_fusion=False, bias_dropout_fusion=False, use_flash_attn=False, optimizer='adam', dataloader_type='single', async_tensor_model_parallel_allreduce=True, no_persist_layer_norm=False, sequence_parallel=False, gradient_accumulation_fusion=True, seed=1234, data_parallel_random_init=False, init_method_std=0.02, init_method_xavier_uniform=False, lr=None, lr_decay_style='linear', lr_decay_iters=None, lr_decay_samples=None, lr_warmup_fraction=None, lr_warmup_iters=0, lr_warmup_samples=0, min_lr=0.0, override_opt_param_scheduler=False, use_checkpoint_opt_param_scheduler=False, save='/scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b', save_interval=1, no_save_optim=True, no_save_rng=True, load=None, load_iters=None, no_load_optim=True, no_load_rng=True, finetune=False, perform_initialization=False, use_checkpoint_args=False, fp16=False, bf16=False, loss_scale=None, initial_loss_scale=4294967296, min_loss_scale=1.0, loss_scale_window=1000, hysteresis=2, fp32_residual_connection=False, apply_query_key_layer_scaling=True, attention_softmax_in_fp32=False, accumulate_allreduce_grads_in_fp32=False, fp16_lm_cross_entropy=False, tensor_model_parallel_size=1, pipeline_model_parallel_size=4, pipeline_model_parallel_split_rank=None, num_layers_per_virtual_pipeline_stage=None, distributed_backend='nccl', DDP_impl='local', use_contiguous_buffers_in_local_ddp=True, scatter_gather_tensors_in_pipeline=True, use_ring_exchange_p2p=False, local_rank=None, use_cpu_initialization=True, empty_unused_memory_level=0, standalone_embedding_stage=False, use_distributed_optimizer=False, eval_only=False, eval_iters=100, eval_interval=1000, data_path=None, split='969, 30, 1', train_data_path=None, valid_data_path=None, test_data_path=None, vocab_file=None, merge_file=None, vocab_extra_ids=0, vocab_extra_ids_list=None, seq_length=4096, variable_seq_lengths=False, scalar_loss_mask=0.0, encoder_seq_length=4096, decoder_seq_length=None, retriever_seq_length=256, sample_rate=1.0, mask_prob=0.15, short_seq_prob=0.1, mmap_warmup=False, num_workers=2, tokenizer_type='SentencePieceTokenizer', tokenizer_model=None, new_tokens=True, data_impl='infer', reset_position_ids=False, reset_attention_mask=False, eod_mask_loss=False, adlr_autoresume=False, adlr_autoresume_interval=1000, ict_head_size=None, biencoder_projection_dim=0, biencoder_shared_query_context_model=False, ict_load=None, bert_load=None, titles_data_path=None, query_in_block_prob=0.1, use_one_sent_docs=False, evidence_data_path=None, retriever_report_topk_accuracies=[], retriever_score_scaling=False, block_data_path=None, embedding_path=None, indexer_batch_size=128, indexer_log_interval=1000, num_classes=1000, img_h=224, img_w=224, num_channels=3, patch_dim=16, classes_fraction=1.0, data_per_class_fraction=1.0, data_sharding=True, head_lr_mult=1.0, iter_per_epoch=1250, dino_local_img_size=96, dino_local_crops_number=10, dino_head_hidden_size=2048, dino_bottleneck_size=256, dino_freeze_last_layer=1, dino_norm_last_layer=False, dino_warmup_teacher_temp=0.04, dino_teacher_temp=0.07, dino_warmup_teacher_temp_epochs=30, log_params_norm=False, log_num_zeros_in_grad=False, timing_log_level=0, barrier_with_L1_time=True, timing_log_option='minmax', tensorboard_log_interval=1, tensorboard_queue_size=1000, log_timers_to_tensorboard=False, log_batch_size_to_tensorboard=False, log_validation_ppl_to_tensorboard=False, log_memory_to_tensorboard=False, log_world_size_to_tensorboard=False, wandb_logger=False, wandb_project=None, wandb_entity='meditron', wandb_name=None, wandb_id=None, wandb_resume='allow', wandb_api_key=None, metrics=[], inference_batch_times_seqlen_threshold=512, max_tokens_to_oom=12000, fp8_e4m3=False, fp8_hybrid=False, fp8_wgrad=True, fp8_margin=0, fp8_interval=1, transformer_impl='local', fp8_amax_history_len=1, fp8_amax_compute_algo='most_recent', rank=0, world_size=4, transformer_pipeline_model_parallel_size=4, data_parallel_size=1, virtual_pipeline_model_parallel_size=None, params_dtype=torch.float32, consumed_train_samples=0, consumed_valid_samples=0, model_name='llama2', model_type=<ModelType.encoder_or_decoder: 1>, padded_vocab_size=32000)
+Special tokens: {'<s>': 1, '</s>': 2}
+using world size: 8, data-parallel-size: 2, tensor-model-parallel size: 1, pipeline-model-parallel size: 4 
+WARNING: overriding default arguments for tokenizer_type:GPT2BPETokenizer                        with tokenizer_type:SentencePieceTokenizer
+accumulate and all-reduce gradients in fp32 for bfloat16 data type.
+using torch.bfloat16 for parameters ...
+setting number of micro-batches to constant 256
+> building SentencePieceTokenizer tokenizer ...
+Special tokens: {'<s>': 1, '</s>': 2}
+Special tokens: {'<s>': 1, '</s>': 2}
+Special tokens: {'<s>': 1, '</s>': 2}
+> initializing torch distributed ...
+> initialized tensor model parallel with size 1
+> initialized pipeline model parallel with size 4
+> setting random seeds to 1234 ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. True
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.95
+  adam_eps ........................................ 1e-05
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  async_tensor_model_parallel_allreduce ........... True
+  attention_dropout ............................... 0.0
+  attention_softmax_in_fp32 ....................... False
+  barrier_with_L1_time ............................ True
+  bert_load ....................................... None
+  bf16 ............................................ True
+  bias_dropout_fusion ............................. False
+  bias_gelu_fusion ................................ False
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  classes_fraction ................................ 1.0
+  clip_grad ....................................... 1.0
+  consumed_train_samples .......................... 0
+  consumed_valid_samples .......................... 0
+  data_impl ....................................... infer
+  data_parallel_random_init ....................... False
+  data_parallel_size .............................. 2
+  data_path ....................................... None
+  data_per_class_fraction ......................... 1.0
+  data_sharding ................................... True
+  data_type ....................................... gpt
+  dataloader_type ................................. cyclic
+  DDP_impl ........................................ local
+  decoder_num_layers .............................. None
+  decoder_seq_length .............................. None
+  dino_bottleneck_size ............................ 256
+  dino_freeze_last_layer .......................... 1
+  dino_head_hidden_size ........................... 2048
+  dino_local_crops_number ......................... 10
+  dino_local_img_size ............................. 96
+  dino_norm_last_layer ............................ False
+  dino_teacher_temp ............................... 0.07
+  dino_warmup_teacher_temp ........................ 0.04
+  dino_warmup_teacher_temp_epochs ................. 30
+  distribute_saved_activations .................... False
+  distributed_backend ............................. nccl
+  embedding_path .................................. None
+  empty_unused_memory_level ....................... 0
+  encoder_num_layers .............................. 32
+  encoder_seq_length .............................. 2048
+  end_weight_decay ................................ 0.1
+  eod_mask_loss ................................... False
+  eval_interval ................................... 150
+  eval_iters ...................................... 10
+  eval_only ....................................... False
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  exit_signal_handler ............................. False
+  ffn_hidden_size ................................. 11008
+  finetune ........................................ False
+  fp16 ............................................ False
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  fp8_amax_compute_algo ........................... most_recent
+  fp8_amax_history_len ............................ 1
+  fp8_e4m3 ........................................ False
+  fp8_hybrid ...................................... False
+  fp8_interval .................................... 1
+  fp8_margin ...................................... 0
+  fp8_wgrad ....................................... True
+  global_batch_size ............................... 1024
+  glu_activation .................................. swiglu
+  gradient_accumulation_fusion .................... True
+  head_lr_mult .................................... 1.0
+  hidden_dropout .................................. 0.0
+  hidden_size ..................................... 4096
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_h ........................................... 224
+  img_w ........................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  inference_batch_times_seqlen_threshold .......... 512
+  init_method_std ................................. 0.02
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  iter_per_epoch .................................. 1250
+  iteration ....................................... release
+  kv_channels ..................................... 128
+  layernorm_epsilon ............................... 1e-05
+  lima_dropout .................................... False
+  load ............................................ /scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b
+  load_iters ...................................... None
+  local_rank ...................................... 0
+  log_batch_size_to_tensorboard ................... False
+  log_interval .................................... 1
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... True
+  log_num_zeros_in_grad ........................... False
+  log_params_norm ................................. False
+  log_timers_to_tensorboard ....................... True
+  log_validation_ppl_to_tensorboard ............... True
+  log_world_size_to_tensorboard ................... False
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 0.0003
+  lr_decay_iters .................................. None
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_warmup_fraction .............................. None
+  lr_warmup_iters ................................. 2000
+  lr_warmup_samples ............................... 0
+  make_vocab_size_divisible_by .................... 128
+  mask_prob ....................................... 0.15
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 4096
+  max_tokens_to_oom ............................... 12000
+  merge_file ...................................... None
+  metrics ......................................... []
+  micro_batch_size ................................ 2
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 3e-05
+  mmap_warmup ..................................... False
+  model_name ...................................... llama2
+  model_type ...................................... encoder_or_decoder
+  new_tokens ...................................... False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_persist_layer_norm ........................... False
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  num_attention_heads ............................. 32
+  num_attention_heads_kv .......................... 32
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_layers ...................................... 32
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_workers ..................................... 0
+  onnx_safe ....................................... None
+  optimizer ....................................... adam
+  override_opt_param_scheduler .................... False
+  padded_vocab_size ............................... 32000
+  parallel_attn ................................... False
+  parallel_layernorm .............................. False
+  params_dtype .................................... torch.bfloat16
+  patch_dim ....................................... 16
+  perform_initialization .......................... True
+  pipeline_model_parallel_size .................... 4
+  pipeline_model_parallel_split_rank .............. None
+  position_embedding_type ......................... PositionEmbeddingType.rotary
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  rank ............................................ 0
+  recompute_granularity ........................... selective
+  recompute_method ................................ None
+  recompute_num_layers ............................ 1
+  reset_attention_mask ............................ False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  rope_scaling_factor ............................. 1.0
+  rope_theta ...................................... 10000.0
+  sample_rate ..................................... 1.0
+  save ............................................ /scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/dbg
+  save_interval ................................... 150
+  scalar_loss_mask ................................ 0.0
+  scatter_gather_tensors_in_pipeline .............. True
+  seed ............................................ 1234
+  seq_length ...................................... 2048
+  sequence_parallel ............................... False
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  skip_iters ...................................... []
+  sliding_window_size ............................. None
+  split ........................................... 969, 30, 1
+  standalone_embedding_stage ...................... False
+  start_weight_decay .............................. 0.1
+  tensor_model_parallel_size ...................... 1
+  tensorboard_dir ................................. /scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/dbg/tensorboards/llama2-7b-tp1-pp4
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  test_data_path .................................. ['/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/redP_val_text_document']
+  tie_embed_logits ................................ False
+  timing_log_level ................................ 0
+  timing_log_option ............................... minmax
+  titles_data_path ................................ None
+  tokenizer_model ................................. None
+  tokenizer_type .................................. SentencePieceTokenizer
+  train_data_path ................................. ['/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/redP_train_text_document']
+  train_iters ..................................... 14369
+  train_samples ................................... None
+  transformer_impl ................................ local
+  transformer_pipeline_model_parallel_size ........ 4
+  use_bias ........................................ False
+  use_checkpoint_args ............................. True
+  use_checkpoint_opt_param_scheduler .............. False
+  use_contiguous_buffers_in_local_ddp ............. True
+  use_cpu_initialization .......................... None
+  use_distributed_optimizer ....................... False
+  use_flash_attn .................................. True
+  use_one_sent_docs ............................... False
+  use_post_ln ..................................... False
+  use_ring_exchange_p2p ........................... False
+  use_rms_norm .................................... True
+  valid_data_path ................................. ['/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/redP_val_text_document']
+  variable_seq_lengths ............................ False
+  virtual_pipeline_model_parallel_size ............ None
+  vocab_extra_ids ................................. 0
+  vocab_extra_ids_list ............................ None
+  vocab_file ...................................... /scratch/cse/btech/cs1200448/llama-weights/7b/tokenizer.model
+  wandb_api_key ................................... None
+  wandb_entity .................................... meditron
+  wandb_id ........................................ None
+  wandb_logger .................................... False
+  wandb_name ...................................... None
+  wandb_project ................................... None
+  wandb_resume .................................... allow
+  weight_decay .................................... 0.1
+  weight_decay_incr_style ......................... constant
+  world_size ...................................... 8
+-------------------- end of arguments ---------------------

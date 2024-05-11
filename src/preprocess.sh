@@ -1,9 +1,17 @@
-## Usage: "sh pre_process.sh train/val" to convert train/val_corpus.json to .bin and .idx files, both of which are needed as input to megatronLLM training
+## Usage: "sh preprocess.sh <model> <inputpath with extension> <outputpath without extension>"
 
-python ../Megatron-LLM/tools/preprocess_data.py --input=./datasets/${1}.jsonl \
-	--output_prefix=./datasets/$1 \
-	--tokenizer_type=SentencePieceTokenizer \
-	--vocab_file=./tokenizer.model \
+if [ "$1" = "llama2" ]; then
+    tpath="./tokenizer_l2.model"
+    ttype="SentencePieceTokenizer"
+elif [ "$1" = "llama3" ]; then
+    tpath="./tokenizer_l3.model"
+    ttype="Tiktoken"
+fi
+
+python ../Megatron-LLM/tools/preprocess_data.py --input=$2 \
+	--output_prefix=$3 \
+	--tokenizer_type=$ttype \
+	--vocab_file=$tpath \
 	--chunk_size=32 \
 	--workers=16 \
 	--no_new_tokens
