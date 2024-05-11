@@ -5,10 +5,13 @@
 # return 43841 #hb ift train
 # return 2307 #hb ift val
 # return 10581 #downstream older
+# return 52597 # ift train
     
 # sh ft_pipeline.sh /scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/santiago /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/santiago-ift 1500 ../datasets/ift/compare_hb/train ../datasets/ift/compare_hb/val 3
 
 # sh ft_pipeline.sh /scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/hb-llama release ../datasets/downstream/train_hb ../datasets/downstream/val_hb 3 
+
+# sh ft_pipeline.sh /home/civil/faculty/krishnan/NLP/matllama /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/santiago-10B 5000 ../datasets/downstream/train ../datasets/downstream/val 1 10581
 
 TRAIN=true
 
@@ -60,9 +63,9 @@ module load compiler/cuda/12.3/compilervars
 
 if $TRAIN; then
     if [ "$ITER" = "release" ]; then
-        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type llama2 --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size 32007
+        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type llama2 --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size 128258
     else
-        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type llama2 --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size 32007 --load_iters $ITER
+        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type llama2 --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size 128258 --load_iters $ITER
     fi
 	sh ./finetune.sh $SAVE_CP/$ITER/added-vocab $SAVE_CP/$ITER $ITER $TRAINDATA $VALDATA $EPOCH $NUMDOCS
     python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type llama2 --load_dir $SAVE_CP/$ITER --save_dir $SAVE_CP/$ITER/hf --target_tensor_parallel_size 1 --target_pipeline_parallel_size 1
@@ -79,4 +82,4 @@ conda activate ${CONDA_ENV_PATH}
 module unload compiler/cuda/12.3/compilervars
 module load compiler/cuda/11.0/compilervars
 
-sh ft_eval_hb.sh $SAVE_CP/$ITER/hf $FT_SAVENAME
+sh ft_eval.sh $SAVE_CP/$ITER/hf $FT_SAVENAME

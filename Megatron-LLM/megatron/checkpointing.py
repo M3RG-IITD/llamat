@@ -36,15 +36,12 @@ def check_checkpoint_args(checkpoint_args):
     """Ensure fixed arguments for a model are the same for the input
     arguments and the one retrieved from checkpoint."""
     args = get_args()
-
+    
     def _compare(arg_name, old_arg_name=None):
         if old_arg_name is not None:
             checkpoint_value = getattr(checkpoint_args, old_arg_name)
         else:
             checkpoint_value = getattr(checkpoint_args, arg_name)
-        # print("////////")
-        # print(args)
-        # print("////////")
     
         args_value = getattr(args, arg_name)
         error_message = '{} value from checkpoint ({}) is not equal to the ' \
@@ -507,7 +504,6 @@ def load_args_from_checkpoint(args, load_arg='load'):
                               use_distributed_optimizer=args.use_distributed_optimizer,
                               rank0=True,
                               specify_iteration=args.load_iters)
-
     # For args we only care about model state dict
     state_dict = model_state_dict
     
@@ -520,7 +516,10 @@ def load_args_from_checkpoint(args, load_arg='load'):
         return args
 
     checkpoint_args = state_dict['args']
-    print(checkpoint_args)
+    if args.rank == 0:
+        print("This is the arguments from the loaded checkpoint.")
+        print(checkpoint_args)
+        
     checkpoint_version = state_dict.get('checkpoint_version', 0)
 
     args.iteration = state_dict['iteration']
@@ -535,7 +534,7 @@ def load_args_from_checkpoint(args, load_arg='load'):
             checkpoint_value = getattr(checkpoint_args, arg_name, None)
 
         if checkpoint_value is not None:
-            print_rank_0(f"Setting {arg_name} to {checkpoint_value} from checkpoint")
+            # print_rank_0(f"Setting {arg_name} to {checkpoint_value} from checkpoint")
             setattr(args, arg_name, checkpoint_value)
 
     _set_arg('num_layers')
@@ -546,6 +545,8 @@ def load_args_from_checkpoint(args, load_arg='load'):
     _set_arg('kv_channels')
     _set_arg('max_position_embeddings')
     _set_arg('tokenizer_type')
+    _set_arg('rope_theta', force=True)
+    _set_arg('tokenizer_type', force=True)
     _set_arg('padded_vocab_size', force=True)
 
     _set_arg('position_embedding_type', force=True)

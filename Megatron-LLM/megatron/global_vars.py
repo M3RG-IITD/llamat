@@ -91,7 +91,6 @@ def set_global_variables(args):
     assert args is not None
     _ensure_var_is_not_initialized(_GLOBAL_ARGS, 'args')
     _set_args(args)
-
     _build_num_microbatches_calculator(args)
     if args.vocab_file or args.tokenizer_type in ["FalconTokenizer", "LlamaTokenizer", "GPT2BPETokenizer"]:
         _ = _build_tokenizer(args)
@@ -102,7 +101,6 @@ def set_global_variables(args):
 
     if args.exit_signal_handler:
         _set_signal_handler()
-
 
 def _build_num_microbatches_calculator(args):
     global _GLOBAL_NUM_MICROBATCHES_CALCULATOR

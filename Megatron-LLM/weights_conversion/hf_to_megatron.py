@@ -50,12 +50,11 @@ from utils.permute_qkv import permute_qkv
 from utils.merge_llama import merge_llama
 
 
-llama_s2layer = {7: 32, 13: 40, 30: 60, 34: 48, 65: 80, 70: 80}
-llama_s2heads = {7: 32, 13: 40, 30: 52, 34: 64, 65: 64, 70: 64}
-llama_s2dense = {7: 11008, 13: 13824, 30: 17920, 34: 22016, 65: 22016,
+llama_s2layer = {7: 32, 8: 32, 13: 40, 30: 60, 34: 48, 65: 80, 70: 80}
+llama_s2heads = {7: 32, 8: 32, 13: 40, 30: 52, 34: 64, 65: 64, 70: 64}
+llama_s2dense = {7: 11008, 8: 14336, 13: 13824, 30: 17920, 34: 22016, 65: 22016,
                  70: 28672}  # should be (2/3)*4*d, but it isn't exaclty that
-llama_s2hidden = {7: 4096, 13: 5120, 30: 6656, 34: 8192, 65: 8192, 70: 8192}
-
+llama_s2hidden = {7: 4096, 8:4096, 13: 5120, 30: 6656, 34: 8192, 65: 8192, 70: 8192}
 
 def falcon_to_megatron(weights: dict, size: int) -> dict:
     def permute(qkv_w):
@@ -140,7 +139,7 @@ def llama_to_megatron(weights: dict, size: int, source: str = "meta",
     hidden = llama_s2hidden[size]
     n_heads = llama_s2heads[size]
     n_hidden_per_head = hidden//n_heads
-    n_kv_heads = n_heads if version == 1 or size <= 13 else 8
+    n_kv_heads = n_heads if version == 1 or size in [7,13] else 8
 
     # weights independent of layers
     embedding = {"word_embeddings.weight": weights["tok_embeddings.weight"]}
@@ -280,7 +279,7 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
         hf_weights = model.state_dict()
     else:
         print("Getting llama...")
-        version = 2 if "2" in model_name else 1
+        version = 1 if model_name.endswith("llama") else 2
         hf_weights, llama_source = merge_llama(size, version, root_dir=cache_dir,
                                                model_path=model_path)
 
@@ -350,7 +349,7 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
             args.update({"max_position_embeddings": 4096, "seq_length": 4096,
                          "layernorm_epsilon": 1e-5})
             if size >= 34:
-                args.update({"num_attention_heads_kv": 8})
+                args.update({"num_attention_heads_kv": 8})                
         elif model_name == "codellama":
             args.update({"max_position_embeddings": 16384, "seq_length": 16384,
                          "layernorm_epsilon": 1e-5, "rope_theta": 1e6})
@@ -358,6 +357,11 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
                 args.update({"num_attention_heads_kv": 8})
             if size < 34 and not re.match(r"CodeLlama-\d+b-Python", cache_dir):
                 args.update({"padded_vocab_size": 32016})
+        elif model_name == "llama3":
+            if size == 8:
+                args.update({"num_attention_heads_kv": 8, "padded_vocab_size": 128256, "max_position_embeddings": 8192, "seq_length": 2048, "rope_theta": 500000.0, 'make_vocab_size_divisible_by':128, "tokenizer_type": "Tiktoken"})
+            else:
+                sys.exit(f"Not yet implemented for llama3 sizes other than 8. Do this!")
         else:
             sys.exit(f"Model name has to be llama, llama2 or codellama, not {model_name}.")
 
@@ -375,16 +379,19 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
     (out/"release"/"mp_rank_00").mkdir(parents=True)
     with open(out/"latest_checkpointed_iteration.txt", "w+") as f:
         f.write("release")
+
     final_dict = {"iteration": "release", "model": {"language_model": megatron_weights},
                   "checkpoint_version": 3.0, "args": Namespace(**args)}
     torch.save(final_dict, out/"release"/"mp_rank_00"/"model_optim_rng.pt")
     print("Saved weights in", out)
 
+    from transformers import AutoTokenizer, AutoModelForCausalLM
     if model_name in {"llama", "llama2"} and llama_source == "hf":
         tokenizer = None
         if model_path is not None:
             try:
-                tokenizer = LlamaTokenizer.from_pretrained(model_path, cache_dir=cache_dir)
+                tokenizer = AutoTokenizer.from_pretrained(model_path, cache_dir=cache_dir)
+                # tokenizer = LlamaTokenizer.from_pretrained(model_path, cache_dir=cache_dir)
             except OSError:
                 warnings.warn(f"Model path {model_path} does not have a "
                               "tokenizer, using default tokenizer instead")
@@ -393,7 +400,8 @@ def main(model_name: str = "falcon", size: int = 7, out: Optional[Path] = None,
                 name = "meta-llama/Llama-2-7b-hf"
             else:
                 name = "decapoda-research/llama-7b-hf"
-            tokenizer = LlamaTokenizer.from_pretrained(name, cache_dir=cache_dir)
+            # tokenizer = LlamaTokenizer.from_pretrained(name, cache_dir=cache_dir)
+            tokenizer = AutoTokenizer.from_pretrained(name, cache_dir)
 
         token_path = out/"tokenizer.model"
         vocab_file = tokenizer.vocab_file
@@ -422,8 +430,8 @@ if __name__ == "__main__":
 
     parser = ArgumentParser(description="Convert Huggingface llama or falcon weights to "
                                         "megatron-compatible weights")
-    parser.add_argument("model", choices={"falcon", "llama", "llama2", "codellama", "mistral"})
-    parser.add_argument("--size", default=7, choices={7, 13, 30, 34, 40, 65, 70}, type=int,
+    parser.add_argument("model", choices={"falcon", "llama", "llama2", "llama3", "codellama", "mistral"})
+    parser.add_argument("--size", default=7, choices={7, 8, 13, 30, 34, 40, 65, 70}, type=int,
                         help="The size of the model")
     parser.add_argument("--out", type=Path,
                         help="Directory to store the megatron weights (as checkpoint)")
@@ -439,12 +447,12 @@ if __name__ == "__main__":
     if args.model == "falcon":
         assert args.size in {7, 40}
     elif args.model == "llama":
-        assert args.size in {7, 13, 30, 65}
+        assert args.size in {7, 8, 13, 30, 65}
     elif args.model == "codellama":
         assert args.size in {7, 13, 34}
     elif args.model == "mistral":
         assert args.size in {7}
     else:
-        assert args.size in {7, 13, 70}
+        assert args.size in {7, 8, 13, 70}
 
     main(args.model, args.size, args.out, args.cache_dir, args.model_path)
