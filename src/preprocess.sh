@@ -13,5 +13,5 @@ python ../Megatron-LLM/tools/preprocess_data.py --input=$2 \
 	--tokenizer_type=$ttype \
 	--vocab_file=$tpath \
 	--chunk_size=32 \
-	--workers=16 \
+	--workers=32 \
 	--no_new_tokens

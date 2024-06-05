@@ -559,6 +559,14 @@ class _Tiktoken(AbstractTokenizer):
         for token, id in self._special_tokens.items():
             self._vocab[token] = id
             self._inv_vocab[id] = token
+        self._cls_id = self._vocab.get('<CLS>')
+        self._sep_id = self._vocab.get('<SEP>')
+        self._eod_id = self._vocab.get('<EOD>')
+        self._mask_id = self._vocab.get('<MASK>')
+        self._pad_id = self._vocab.get('<PAD>')
+        self._bos_id = self._vocab.get('<|begin_of_text|>')
+        self._eos_id = self._vocab.get('<|end_of_text|>')
+        print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
 
     def _initalize(self, vocab_extra_ids, vocab_extra_ids_list, new_tokens):
         self._vocab = {}
@@ -569,17 +577,6 @@ class _Tiktoken(AbstractTokenizer):
         for token,id in self._tokenizer.items():
             self._inv_vocab[id] = token
             self._vocab[token] = id
-
-        self._cls_id = self._vocab.get('<CLS>')
-        self._sep_id = self._vocab.get('<SEP>')
-        self._eod_id = self._vocab.get('<EOD>')
-        self._mask_id = self._vocab.get('<MASK>')
-
-        pad_token = '<PAD>'
-        self._pad_id = self._vocab.get(pad_token)
-
-        self._bos_id = self._vocab.get('<|begin_of_text|>')
-        self._eos_id = self._vocab.get('<|end_of_text|>')
 
     @property
     def vocab_size(self):

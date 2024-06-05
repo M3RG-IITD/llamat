@@ -3,14 +3,14 @@
 if [ "$1" = "llama2" ]; then
     tpath="./tokenizer_l2.model"
     ttype="SentencePieceTokenizer"
-elif [ "$2" = "llama3" ]; then
+elif [ "$1" = "llama3" ]; then
     tpath="./tokenizer_l3.model"
     ttype="Tiktoken"
 fi
 
 python ../Megatron-LLM/tools/preprocess_instruct_data.py \
-	--input=.$1 \
-	--output_prefix=$2 \
+	--input=$2 \
+	--output_prefix=$3 \
 	--tokenizer_type=$ttype \
 	--vocab_file=$tpath \
 	--vocab_extra_ids_list "<|im_start|>,<|im_end|>" \
