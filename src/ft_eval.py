@@ -385,12 +385,19 @@ combined_df = combined_df.sort_index(axis=1).apply(lambda x : round(x,2))
 print(f"===eval over average of {args.num_seeds} runs===")
 print(combined_df.to_string())
 
+print("Mat Sci Tasks")
+print("Macro-f1", combined_df.iloc[:-4].mean().loc[('macro-f1/em','mean')])
+print("Micro-fq", combined_df.iloc[:-4].mean().loc[('micro-f1/f1','mean')])
+print("English Tasks")
+print("Macro-f1", combined_df.iloc[-4:].mean().loc[('macro-f1/em','mean')])
+print("Micro-f1", combined_df.iloc[-4:].mean().loc[('micro-f1/f1','mean')])
+
 prefix = args.checkpoint.split('/')[-3] + '-' + args.checkpoint.split('/')[-2]
 
 now = datetime.datetime.now()
 datetimestring = now.strftime("%y-%m-%d-%H-%M")
 
-combined_df.to_csv(f'/home/cse/btech/cs1200448/MatLlama/scripts/csvs/{prefix}-{datetimestring}.csv')
+combined_df.to_csv(f'/home/cse/btech/cs1200389/MatLlama/MatLLaMA/src/csvs/{prefix}-{datetimestring}.csv')
 
 # df_sum = reduce(lambda x, y: x.add(y, fill_value=0), daddy_df)
 # df_mean = df_sum / len(daddy_df)

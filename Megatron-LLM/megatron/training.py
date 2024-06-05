@@ -725,7 +725,9 @@ def _train(args, forward_step_func,
                                        valid_data_iterator, model,
                                        iteration, process_non_loss_data_func,
                                        verbose=False, args=args)
-            test_and_print_results(prefix, forward_step_func,
+            
+            if args.data_type != 'instruction':
+                test_and_print_results(prefix, forward_step_func,
                                        test_data_iterator, model,
                                        iteration, process_non_loss_data_func,
                                        verbose=False, args=args)

@@ -11,6 +11,7 @@ GLOBAL_BATCH=64
 RANK=0
 N_NODES=1
 ADDR=localhost
+PORT=29505
 WANDB=0
 INSTRUCT=1
 CHECKPOINT_PATH=none
@@ -28,6 +29,9 @@ USR_MIN_LR=none
 LOSS_MASK=0.0
 SAVE_INTERVAL=100
 IT=none
+RUN_NAME=none
+tpath=none
+ttype=none
 
 MODEL=$1
 shift
@@ -57,6 +61,11 @@ while [[ $# -gt 0 ]]; do
         --loss-mask) LOSS_MASK=$2; shift; shift;;
         --save-interval) SAVE_INTERVAL=$2; shift; shift;;
         --it) IT=$2; shift; shift;;
+        --run_name) RUN_NAME=$2; shift; shift;;
+        --tpath) tpath=$2; shift; shift;;
+        --ttype) ttype=$2; shift; shift;;
+        --port) PORT=$2; shift; shift;;
+        --size) SIZE=$2; shift; shift;;
         *) echo unknown argument $1; help; exit 1;;
     esac
 done
@@ -76,25 +85,14 @@ else
 fi
 
 TENSORBOARD_PATH=$TRAINED_PATH/logging
-DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $N_NODES --node_rank $RANK --master_addr $ADDR"
+DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $N_NODES --node_rank $RANK --master_addr $ADDR --master_port=$PORT"
 
 if [[ $INSTRUCT = 1 ]]; then
-    if [[ $DATA_PATH = none ]]; then
-        DATA_PATH=/pure-mlo-scratch/alhernan/data/orca/orca
-    fi
     EXTRA_IDS="<|im_start|>,<|im_end|>"
-else
-    if [[ $DATA_PATH = none ]]; then
-        DATA_PATH=/pure-mlo-scratch/data/tokenized/pubmed-all/pubmed-all-llama_text_document
-    fi
 fi
-TOKENIZER=SentencePieceTokenizer
+TOKENIZER=$ttype
 
-if [[ $SEQ_LEN = none ]]; then
-    SEQ_LEN=4096
-fi
-
-EXTRA_ARGS="--vocab_file=./tokenizer.model --use_rms_norm --glu_activation swiglu --no_tie_embed_logits"
+EXTRA_ARGS="--vocab_file=$tpath --use_rms_norm --glu_activation swiglu --no_tie_embed_logits"
 EXTRA_ARGS="$EXTRA_ARGS --layernorm_epsilon 1e-5"
 if (( $SIZE > 13 )); then  # llama 2, 34B and 70B
     LR="1.5e-4"
@@ -103,7 +101,7 @@ fi
 
 COMMON_ARGS="--use_flash_attn --no_bias_gelu_fusion
 	     --seq_length $SEQ_LEN
-         --log_interval 1 --save_interval $SAVE_INTERVAL --eval_interval 1000000000
+         --log_interval 1 --save_interval $SAVE_INTERVAL --eval_interval $SAVE_INTERVAL
          --eval_iters 10 --hidden_dropout 0.0 --position_embedding_type rotary
 	     --no_bias_dropout_fusion --use_checkpoint_args
 	     --attention_dropout 0.0 --adam_beta1 0.9 --adam_beta2 0.95 --adam_eps 1e-5
@@ -122,6 +120,8 @@ COMMON_ARGS="$COMMON_ARGS --train_iters $ITERS"
 
 # DATA_PATH=../datasets/downstream/train
 # VAL_PATH=../datasets/downstream/val
+DATA_PATH=/scratch/cse/btech/cs1200448/MatLlama/ift_cif_large/train
+VAL_PATH=/scratch/cse/btech/cs1200448/MatLlama/ift_cif_large/val
 
 if [[ $VAL_PATH = none ]]; then
 	DATA_ARGS="--data_path $DATA_PATH"
@@ -151,6 +151,8 @@ echo COMMON_ARGS=$COMMON_ARGS
 echo EXTRA_ARGS=$EXTRA_ARGS
 echo
 
+current_datetime=$(date +"%y_%m_%d_%H_%M")
+
 CUDA_DEVICE_MAX_CONNECTIONS=1 OMP_NUM_THREADS=16 torchrun $DISTRIBUTED_ARGS ../Megatron-LLM/finetune.py \
        --tensor_model_parallel_size $TP \
        --pipeline_model_parallel_size $PP  \
@@ -165,4 +167,4 @@ CUDA_DEVICE_MAX_CONNECTIONS=1 OMP_NUM_THREADS=16 torchrun $DISTRIBUTED_ARGS ../M
        --micro_batch_size $MICRO_BATCH \
        --num_workers=2 \
        $EXTRA_ARGS \
-       $COMMON_ARGS
+       $COMMON_ARGS > logs/${RUN_NAME}_${current_datetime}.txt

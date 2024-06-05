@@ -1,0 +1,5 @@
+sh ft_pipeline.sh /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_xk/14369 /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_704k_ds 11000 ../datasets/downstream/train ../datasets/downstream/val 1 10581 llama2_30B_704k_ds llama2 29513 > ./logs/llama2_30B_704k_ds.txt
+
+sh ft_pipeline.sh /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_xk/14369 /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_768k_ds 12000 ../datasets/downstream/train ../datasets/downstream/val 1 10581 llama2_30B_768k_ds llama2 29514 > ./logs/llama2_30B_768k_ds.txt
+
+sh ft_pipeline.sh /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_xk/14369 /scratch/cse/btech/cs1200448/MatLlama/ft-checkpoints/llama2_30B_800k_ds 12500 ../datasets/downstream/train ../datasets/downstream/val 1 10581 llama2_30B_800k_ds llama2 29515 > ./logs/llama2_30B_800k_ds.txt

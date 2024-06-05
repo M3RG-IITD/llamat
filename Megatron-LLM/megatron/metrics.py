@@ -30,6 +30,7 @@ class MetricInput:
         if self._instruct_mask is None:
             # like loss_mask but ignoring the <|im_end|> and <|im_start|>role\n too
             tokenizer = get_tokenizer()
+            print("DEBUG LINE!!!", tokenizer.tokenize("<|im_start|>"))
             im_start_id, = tokenizer.tokenize("<|im_start|>")
             im_end_id, = tokenizer.tokenize("<|im_end|>")
             should_keep = torch.ones_like(self.loss_mask)

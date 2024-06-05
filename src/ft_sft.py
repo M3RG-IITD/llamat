@@ -51,6 +51,10 @@ def finetune(args: Namespace):
     cmd += ["--iters", n_iters]
     cmd += ["--data", args.traindata]
     cmd += ["--val-path", args.valdata]
+    cmd += ["--run_name", args.runname]
+    cmd += ["--tpath", args.tpath]
+    cmd += ["--ttype", args.ttype]
+    cmd += ["--port", args.port]
 
     if args.nodes > 1:
         cmd += ["--nodes", args.nodes, "--rank", args.rank, "--addr", args.addr]
@@ -68,11 +72,15 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--traindata")
     parser.add_argument("--valdata")
+    parser.add_argument("--runname")
+    parser.add_argument("--tpath")
+    parser.add_argument("--ttype")
+    parser.add_argument("--port")
     parser.add_argument("--numdocs", type=int)
     parser.add_argument("--checkpoint", help="Name of the model to finetune")
     parser.add_argument("--load_iters", help="Which iteration to finetune")
     parser.add_argument("--save_checkpoint_dir", type=str, help="Directory to save the trained checkpoint")
-    parser.add_argument("--size", default=7, choices=[7, 13, 70], type=int, help="Size of the model to finetune")
+    parser.add_argument("--size", default=7, choices=[7, 8, 13, 70], type=int, help="Size of the model to finetune")
     parser.add_argument("--micro_batch", type=int, default=2, help="Micro batch size")
     parser.add_argument("--epochs", type=int, default=DEFAULT_EPOCHS, help="Epochs to train for")
     parser.add_argument("--seq", type=int, default=DEFAULT_SEQ, help="Sequence length")

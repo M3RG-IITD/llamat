@@ -17,13 +17,14 @@ SIZE=$3
 LR="3e-4"
 
 # LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b
-LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/8b-testing
-# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/llama3
+# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/8b-testing
+LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/llama3_pmc_ds
+# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/llama2_debug
 SAVE_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/${EXP_NAME}
 
-TRAIN_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/train_llama3_text_document
-VALID_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/final_val_llama3_text_document
-TEST_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/val_llama3_text_document
+TRAIN_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/train_pmc_llama3_text_document
+VALID_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/val_llama3_text_document
+TEST_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/redp_val_llama3_text_document
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $N_NODES --node_rank $RANK --master_addr $ADDR"
 
@@ -65,9 +66,11 @@ TRAIN_ITERS=$((TRAIN_SEQS/GLOBAL_BATCH))
 EVAL_ITERS=$((EVAL_SEQS/GLOBAL_BATCH))
 TEST_ITERS=$((TEST_SEQS/GLOBAL_BATCH))
 
+EVAL_ITERS=20
+
 COMMON_ARGS="$COMMON_ARGS --use_flash_attn --no_bias_gelu_fusion
 		--seq_length $SEQ_LEN
-		--log_interval 1 --eval_interval 150 --save_interval 150
+		--log_interval 1 --eval_interval 150 --save_interval 300
 		--use_checkpoint_args --hidden_dropout 0.0
 		--position_embedding_type rotary
 		--no_bias_dropout_fusion --attention_dropout 0.0
@@ -112,4 +115,4 @@ CUDA_DEVICE_MAX_CONNECTIONS=1 OMP_NUM_THREADS=16 torchrun $DISTRIBUTED_ARGS ../M
 	--global_batch_size $GLOBAL_BATCH \
 	--micro_batch_size $MICRO_BATCH \
 	$EXTRA_ARGS \
-	$COMMON_ARGS #> logs/$1_${current_datetime}.txt
+	$COMMON_ARGS > logs/$1_${current_datetime}.txt
