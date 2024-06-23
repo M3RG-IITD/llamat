@@ -24,4 +24,5 @@ Arguments flow from top to bottom in the above list.
 The weights of the input model must be stored in the Megatron format. To convert model weights from the HuggingFace format to Megatron format, `wt_fromhf.sh` is used. For the reverse conversion `wt_tohf.sh` is used. The model weights resulting from IFT are stored in the HF format to facilitate inference.
 
 ## Inference and Evaluation
-
+The environment for inference requires the [VLLM](https://docs.vllm.ai/en/stable/getting_started/installation.html) library.
+Evaluation and inference is done using `ft_eval.sh`.
