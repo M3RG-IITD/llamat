@@ -14,9 +14,11 @@ This repo contains all the data and code related to our paper [Foundational Larg
 ## Overview
 We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in material science, via continued pretraining followed by instruction finetuning on material science and chemistry datasets. 
 
-<img align="left" src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" style="width:34%; height:auto;">
-<img align="right" src="https://github.com/user-attachments/assets/4374bdc7-778d-45ed-86b4-a6b03e59108d" alt="overview" style="width:64%; height:auto;">
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" width="35%"/>
+  <img src="https://github.com/user-attachments/assets/4374bdc7-778d-45ed-86b4-a6b03e59108d"  alt="results" width="50%"/>
+</p>
 LLaMat overview and usage tasks.
 
 for full results please look at our paper [Foundational Large Language Models for Materials Research
