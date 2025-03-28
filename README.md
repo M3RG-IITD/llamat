@@ -19,25 +19,24 @@ We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in mate
     <td width="45%">
       <figure>
         <img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" width="100%"/>
-        <figcaption align="center"><b>Overview</b></figcaption>
+        <figcaption align="center"><b>LLaMat overview </b></figcaption>
       </figure>
     </td>
     <td width="55%">
       <figure>
         <img src="https://github.com/user-attachments/assets/e6083da0-f751-4b05-ad00-299257f935fa" width="100%"/>
-        <figcaption align="center"><b>Results 1</b></figcaption>
+        <figcaption align="center"><b>Results on MatNLP dataset</b></figcaption>
       </figure>
       <br>
       <figure>
         <img src="https://github.com/user-attachments/assets/28e44058-792f-4aa1-b403-d77588d2c48f" alt="results" width="100%"/>
-        <figcaption align="center"><b>Results 2</b></figcaption>
+        <figcaption align="center"><b>Results on structured information extraction tasks</b></figcaption>
       </figure>
     </td>
   </tr>
 </table>
-LLaMat overview and usage tasks.
 
-for full results please look at our paper [Foundational Large Language Models for Materials Research
+for detailed results please look at our paper [Foundational Large Language Models for Materials Research
 ](https://arxiv.org/abs/2412.09560). The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd). The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 
 ---
