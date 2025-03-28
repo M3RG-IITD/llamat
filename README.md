@@ -58,8 +58,9 @@ Pretraining was performed on a text corpus of total 30B tokens, interleaved in t
 1. 10M research paper tokens taken from Elsevier and Springer publications followed by 0.1M Red Pajama tokens 
 2. 30M Matsci community discourse tokens included in the last 3B (10%) of the dataset in
 100:1 ratio.
-   
-The pretraining was performed on a Cerebras-CS2 cluster and supported by Edinburgh International Data Facility (EIDF) and University of Edinburgh. 
+the list of journals and DOIs of the research papers used can be accessed from [zenodo](https://zenodo.org/records/15101805?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImE2NDdiMDQ0LTQyOWMtNGJiZS1iZGVhLTY3OGI0MWZiYTQyOCIsImRhdGEiOnt9LCJyYW5kb20iOiI0Y2NjODVhMWJiMWM0YWQyMmZkZGZmNGRiYjA3NDkyZiJ9.a4apRHBEQzRs7gsFzbzM06spDgt1YCc-OMwNTNUMpc_6z5MXVTIaiAGpS4dQhd4Ib56p8RTKqOuIqXSBbr9bwQ)
+
+
 ---
 
 ## Inference and Evaluation
