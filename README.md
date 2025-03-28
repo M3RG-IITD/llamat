@@ -19,7 +19,7 @@ We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in mate
   <tr>
     <td width="50%"><img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="Tall Image" width="100%"/></td>
     <td width="50%">
-      <img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" width="100%"/><br>
+      <img src="https://github.com/user-attachments/assets/e6083da0-f751-4b05-ad00-299257f935fa" width="100%"/><br>
       <img src="https://github.com/user-attachments/assets/28e44058-792f-4aa1-b403-d77588d2c48f" alt="Wide Image 2" width="100%"/>
     </td>
   </tr>
