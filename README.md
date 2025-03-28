@@ -11,20 +11,30 @@ This repo contains all the data and code related to our paper [Foundational Larg
 - [Instruction finetuning](instruction-finetuning)
 
 ---
-![image]()
-
 ## Overview
 We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in material science, via continued pretraining followed by instruction finetuning on material science and chemistry datasets. 
+
 <table>
   <tr>
-    <td width="50%"><img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="Tall Image" width="100%"/></td>
-    <td width="50%">
-      <img src="https://github.com/user-attachments/assets/e6083da0-f751-4b05-ad00-299257f935fa" width="100%"/><br>
-      <img src="https://github.com/user-attachments/assets/28e44058-792f-4aa1-b403-d77588d2c48f" alt="Wide Image 2" width="100%"/>
+    <td width="45%">
+      <figure>
+        <img src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" width="100%"/>
+        <figcaption align="center"><b>Overview</b></figcaption>
+      </figure>
+    </td>
+    <td width="55%">
+      <figure>
+        <img src="https://github.com/user-attachments/assets/e6083da0-f751-4b05-ad00-299257f935fa" width="100%"/>
+        <figcaption align="center"><b>Results 1</b></figcaption>
+      </figure>
+      <br>
+      <figure>
+        <img src="https://github.com/user-attachments/assets/28e44058-792f-4aa1-b403-d77588d2c48f" alt="results" width="100%"/>
+        <figcaption align="center"><b>Results 2</b></figcaption>
+      </figure>
     </td>
   </tr>
 </table>
-
 LLaMat overview and usage tasks.
 
 for full results please look at our paper [Foundational Large Language Models for Materials Research
