@@ -13,8 +13,8 @@ This repo contains all the data and code related to our paper [Foundational Larg
 ---
 ## Overview
 We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in material science, via continued pretraining followed by instruction finetuning on material science and chemistry datasets. 
-<
-<img align="left" src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" style="width:50%; height:auto;">
+
+<img align="left" src="https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2" alt="overview" style="width:30%; height:auto;">
 
 LLaMat overview and usage tasks.
 
