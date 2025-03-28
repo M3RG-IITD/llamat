@@ -1,3 +1,14 @@
+# LLaMat 
+---
+This repo contains all the data and code related to our paper [Foundational Large Language Models for Materials Research
+](https://arxiv.org/abs/2412.09560). 
+
+## Table of contents
+---
+
+
+
+
 # Documentation
 The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 ## File Structure
