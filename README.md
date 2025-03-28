@@ -15,15 +15,20 @@ This repo contains all the data and code related to our paper [Foundational Larg
 We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in material science, via continued pretraining followed by instruction finetuning on material science and chemistry datasets. 
 ### results comparison on the downstream dataset
 ![fig2_new](https://github.com/user-attachments/assets/79098ebe-bf2e-48b8-972f-1dc98fdbfd7c).
+
 for full results please look at our paper [Foundational Large Language Models for Materials Research
 ](https://arxiv.org/abs/2412.09560). 
+
 The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd)
+The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 ---
 ## Pretraining
 Pretraining was performed on a text corpus of total 30B tokens, interleaved in the following way:
-        1. 10M research paper tokens taken from Elsevier and Springer publications followed by 0.1M Red Pajama tokens 
-        2. 30M Matsci community discourse tokens included in the last 3B (10%) of the dataset in
+
+1. 10M research paper tokens taken from Elsevier and Springer publications followed by 0.1M Red Pajama tokens 
+2. 30M Matsci community discourse tokens included in the last 3B (10%) of the dataset in
 100:1 ratio.
+   
 The pretraining was performed on a Cerebras-CS2 cluster and supported by Edinburgh International Data Facility (EIDF) and University of Edinburgh. 
 
 ---
@@ -36,7 +41,7 @@ The pretraining was performed on a Cerebras-CS2 cluster and supported by Edinbur
   Code used for creating the plots used in the paper
 - [evaluation_codes](evaluation_codes)
   Contains code for running benchmark evaluations
-The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
+  
 ---
 
 ## Inference and Evaluation
