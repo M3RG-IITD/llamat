@@ -4,23 +4,21 @@ This repo contains all the data and code related to our paper [Foundational Larg
 
 ## Table of contents
 ---
-- [Overview and comparison](#overview)
+- [Overview](#overview)
 - [Pretraining](#pretraining)
 - [File Structure](#file-structure)
 - [Inference and Evaluation](#inference-and-evaluation)
-- [Instruction finetuning](instruction-fine-tuning)
+- [Instruction finetuning](instruction-finetuning)
 
 ---
 ## Overview
 We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in material science, via continued pretraining followed by instruction finetuning on material science and chemistry datasets. 
-### results comparison on the downstream dataset
-![fig2_new](https://github.com/user-attachments/assets/79098ebe-bf2e-48b8-972f-1dc98fdbfd7c).
+![image](https://github.com/user-attachments/assets/461a6aba-6321-45c8-a893-eb1e2b4f4db2)
+LLaMat overview and usage tasks.
 
 for full results please look at our paper [Foundational Large Language Models for Materials Research
-](https://arxiv.org/abs/2412.09560). 
+](https://arxiv.org/abs/2412.09560). The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd). The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 
-The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd)
-The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 ---
 ## Pretraining
 Pretraining was performed on a text corpus of total 30B tokens, interleaved in the following way:
@@ -45,8 +43,7 @@ The pretraining was performed on a Cerebras-CS2 cluster and supported by Edinbur
 ---
 
 ## Inference and Evaluation
-for running the benchmark evaluations on our datasets. to run, first open the [evaluation_codes](evaluation_codes) directory and follow the given instructions. The environment for inference for downstream tasks requires the [VLLM](https://docs.vllm.ai/en/stable/getting_started/installation.html) library.
-Evaluation and inference is done using `ft_eval.sh`.
+for running the benchmark evaluations on our datasets. to run, first open the [evaluation_codes](evaluation_codes) directory and follow the given instructions. The environment for inference for matNLP tasks requires the [VLLM](https://docs.vllm.ai/en/stable/getting_started/installation.html) library.
 
 ### Instructions to run matNLP evaluations 
 
@@ -70,8 +67,8 @@ This will print the output to the screen along the metrics discussed in the pape
 
 
 
-## Instruction Fine-Tuning
-#### Command:
+## Instruction finetuning
+### Command:
 ```
 sh ft_pipeline.sh <load_model_path> <save_model_path> <model_iteration_to_finetune> <train_path>\
 <val_path> <epochs> <number of docs in train set> <log_file_name> <llama2/llama3> <port number>
