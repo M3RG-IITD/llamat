@@ -8,7 +8,7 @@ This repo contains all the data and code related to our paper [Foundational Larg
 - [Pretraining](#pretraining)
 - [File Structure](#file-structure)
 - [Inference and Evaluation](#inference-and-evaluation)
-- [Instruction finetuning](instruction-finetuning)
+- [Instruction finetuning](#instruction-finetuning)
 
 ---
 ## Overview
@@ -88,6 +88,7 @@ This will print the output to the screen along the metrics discussed in the pape
 
 
 ## Instruction finetuning
+
 ### Command:
 ```
 sh ft_pipeline.sh <load_model_path> <save_model_path> <model_iteration_to_finetune> <train_path>\
