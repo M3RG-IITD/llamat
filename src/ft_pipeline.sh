@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+## replace ../../Megatron with the actual path. 
+
 # return 19942 #hb downstream train
 # return 170594 #hb downstream val
 # return 43841 #hb ift train
@@ -99,19 +102,19 @@ fi
 if $TRAIN; then
     echo "========Adding embeddings in the model for <|im_start|> and <|im_end|>========"
     if [ "$ITER" = "release" ]; then
-        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size $vocabsize
+        python3 ../../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size $vocabsize
     else
-        python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size $vocabsize --load_iters $ITER
+        python3 ../../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $LOAD_CP --save_dir $SAVE_CP/$ITER/added-vocab --true_vocab_size $vocabsize --load_iters $ITER
     fi
     
     echo "========Finetuning the model========"
 	sh ./finetune.sh $SAVE_CP/$ITER/added-vocab $SAVE_CP/$ITER $ITER $TRAINDATA $VALDATA $EPOCH $NUMDOCS $FT_SAVENAME $tpath $ttype $PORT $size
     
     echo "========Converting the model to tp1pp1========"
-    python3 ../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $SAVE_CP/$ITER --save_dir $SAVE_CP/$ITER/hf --target_tensor_parallel_size 1 --target_pipeline_parallel_size 1
+    python3 ../../Megatron-LLM/tools/checkpoint_util.py --model_type $MODEL --load_dir $SAVE_CP/$ITER --save_dir $SAVE_CP/$ITER/hf --target_tensor_parallel_size 1 --target_pipeline_parallel_size 1
     
     echo "========Converting the model to hf format========"
-    python3 ../Megatron-LLM/weights_conversion/megatron_to_hf.py --input_dir $SAVE_CP/$ITER/hf --output_dir $SAVE_CP/$ITER/hf --model $MODEL --vocab_file /scratch/cse/btech/cs1200448/llama-weights/7b/tokenizer.model --num_output_shards 3 --vocab_extra_ids_list "<|im_start|>,<|im_end|>"
+    python3 ../../Megatron-LLM/weights_conversion/megatron_to_hf.py --input_dir $SAVE_CP/$ITER/hf --output_dir $SAVE_CP/$ITER/hf --model $MODEL --vocab_file /scratch/cse/btech/cs1200448/llama-weights/7b/tokenizer.model --num_output_shards 3 --vocab_extra_ids_list "<|im_start|>,<|im_end|>"
     # rm -rf $SAVE_CP/$ITER/iter*
     # rm -rf $SAVE_CP/$ITER/latest*
     

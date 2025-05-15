@@ -102,6 +102,10 @@ The files that are responsible for IFT:
 - `ft_sft.sh`
 
 Arguments flow from top to bottom in the above list.
+
+A script is provided to simplify running on our data, make the necessary path changes in the `train_repo.sh` file (in src folder) and run by calling `bash train_repo.sh`
+
+
 The Instruction finetuning process was performed on 8 Nvidia-A100 80GB GPUs via IIT Delhi's High Performance Computing facility. 
 
 The weights of the input model must be stored in the Megatron format. To convert model weights from the HuggingFace format to Megatron format, `wt_fromhf.sh` is used. For the reverse conversion `wt_tohf.sh` is used. The model weights resulting from IFT are stored in the HF format to facilitate inference.
