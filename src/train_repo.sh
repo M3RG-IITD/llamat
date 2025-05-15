@@ -7,7 +7,7 @@ bash dataset_setup.sh
 mkdir -p logs 
 
 ## replace this with where you stored the ift dataset. 
-ift_dataset_path="/home/cse/btech/cs1200389/MatLlama/MatLLaMA/datasets/ift/final_paper_ift"
+ift_dataset_path="../datasets/final_paper_ift"
 
 ## replace this with the location of all the checkpoints stored. 
 checkpoints_folder="/scratch/civil/faculty/krishnan/cs1200448.scratch.hf-to-meditron-weights"
