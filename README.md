@@ -60,7 +60,7 @@ Pretraining was performed on a text corpus of total 30B tokens, interleaved in t
 100:1 ratio.
 the list of journals and DOIs of the research papers used can be accessed from [zenodo](https://zenodo.org/records/15101805?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImE2NDdiMDQ0LTQyOWMtNGJiZS1iZGVhLTY3OGI0MWZiYTQyOCIsImRhdGEiOnt9LCJyYW5kb20iOiI0Y2NjODVhMWJiMWM0YWQyMmZkZGZmNGRiYjA3NDkyZiJ9.a4apRHBEQzRs7gsFzbzM06spDgt1YCc-OMwNTNUMpc_6z5MXVTIaiAGpS4dQhd4Ib56p8RTKqOuIqXSBbr9bwQ)
 
-
+### For setting up environment to install Megatron, please follow the instructions provided [here](https://github.com/M3RG-IITD/llamat/blob/main/installation_instructions.md)
 ---
 
 ## Inference and Evaluation
