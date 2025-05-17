@@ -90,7 +90,13 @@ This will print the output to the screen along the metrics discussed in the pape
 ---
 ## Instruction finetuning
 
-### Command:
+The weights of the input model must be stored in the Megatron format. To convert model weights from the HuggingFace format to Megatron format, `wt_fromhf.sh` is used. For the reverse conversion `wt_tohf.sh` is used. The model weights resulting from IFT are stored in the HF format to facilitate inference. After downloading the model from huggingface, this conversion is necessary for training.
+
+
+We follow 2 step finetuning. First the model is trained on OpenOrca which is a generic IFT dataset. To run this finetuning, simply make the required path changes in `src/run_orca_ift.sh` and run it. 
+for the next finetuning step, make the necessary path changes in the `src/train_repo.sh` file and run by calling `bash train_repo.sh` (while in the src folder). 
+
+### General Command:
 ```
 sh ft_pipeline.sh <load_model_path> <save_model_path> <model_iteration_to_finetune> <train_path>\
 <val_path> <epochs> <number of docs in train set> <log_file_name> <llama2/llama3> <port number>
@@ -103,12 +109,7 @@ The files that are responsible for IFT:
 
 Arguments flow from top to bottom in the above list.
 
-A script is provided to simplify running on our data, make the necessary path changes in the `train_repo.sh` file (in src folder) and run by calling `bash train_repo.sh`
-
-
 The Instruction finetuning process was performed on 8 Nvidia-A100 80GB GPUs via IIT Delhi's High Performance Computing facility. 
-
-The weights of the input model must be stored in the Megatron format. To convert model weights from the HuggingFace format to Megatron format, `wt_fromhf.sh` is used. For the reverse conversion `wt_tohf.sh` is used. The model weights resulting from IFT are stored in the HF format to facilitate inference.
 
 ---
 ## Acknowledgements
