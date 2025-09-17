@@ -1,4 +1,6 @@
 #datasets
+visualizations/downstream_compare_outputs/*.pkl
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
