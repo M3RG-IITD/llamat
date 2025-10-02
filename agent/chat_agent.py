@@ -17,7 +17,7 @@ import hashlib
 class ChatConfig:
     """Configuration for chat agent"""
     model_endpoint: str = "http://localhost:8000/v1/completions"
-    model_name: str = "models--m3rg-iitd--llamat-2-chat"
+    model_name: str = "model_path_used_during_hosting_by_vllm_serve"
     temperature: float = 0.7
     max_tokens: int = 512
     max_context_tokens: int = 3000  # Token limit for context management
