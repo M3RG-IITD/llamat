@@ -1,9 +1,17 @@
 #datasets
 
+*.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# big files
+*.pptx
+*.pkl
+*.json
+*.jsonl
 
 # C extensions
 *.so
