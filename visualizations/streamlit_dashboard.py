@@ -174,8 +174,8 @@ def main():
     )
     
     # Default file path
-    default_file_path = "./visualizations/downstream_compare_outputs/_downstream_eval.json"
-    val_file_path = "./visualizations/downstream_compare_outputs/val_downstream.jsonl"
+    default_file_path = "./downstream_compare_outputs/_downstream_eval.json"
+    val_file_path = "./downstream_compare_outputs/val_downstream.jsonl"
     # Load data
     if uploaded_file is not None:
         # Save uploaded file temporarily
