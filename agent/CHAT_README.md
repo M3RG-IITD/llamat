@@ -1,6 +1,6 @@
 # 🧪 Materials Science Chat Interface
 
-An interactive ChatGPT-like interface for materials science conversations using your local llamat-2 model.
+An interactive ChatGPT-like interface for materials science conversations using your local llamat-2-chat model.
 
 ## Features
 
