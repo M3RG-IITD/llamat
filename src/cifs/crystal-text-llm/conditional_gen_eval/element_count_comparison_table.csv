@@ -1,0 +1,5 @@
+element_count_range,actual_pred_cif_llamat2_9064_llamat2_1758654262.csv,actual_pred_cif_llamat3_9064_llamat3_1758654262.csv
+11-25,0.0,0.0
+6-10,75.0,25.0
+>25,0.0,0.0
+≤5,79.08829387032529,5.521132994025227

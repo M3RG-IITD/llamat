@@ -1,0 +1,9 @@
+file,element_count_range,total_count,successful_extractions,matches,extraction_success_rate,match_rate,match_rate_among_valid
+actual_pred_cif_llamat3_9064_llamat3_1758654262.csv,≤5,9038,6260,499,69.26311130781147,5.521132994025227,7.9712460063897765
+actual_pred_cif_llamat3_9064_llamat3_1758654262.csv,6-10,8,5,2,62.5,25.0,40.0
+actual_pred_cif_llamat3_9064_llamat3_1758654262.csv,11-25,0,0,0,0.0,0.0,0.0
+actual_pred_cif_llamat3_9064_llamat3_1758654262.csv,>25,0,0,0,0.0,0.0,0.0
+actual_pred_cif_llamat2_9064_llamat2_1758654262.csv,≤5,9038,8207,7148,90.8054879398097,79.08829387032529,87.09638113805288
+actual_pred_cif_llamat2_9064_llamat2_1758654262.csv,6-10,8,7,6,87.5,75.0,85.71428571428571
+actual_pred_cif_llamat2_9064_llamat2_1758654262.csv,11-25,0,0,0,0.0,0.0,0.0
+actual_pred_cif_llamat2_9064_llamat2_1758654262.csv,>25,0,0,0,0.0,0.0,0.0
