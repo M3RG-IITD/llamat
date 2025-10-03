@@ -1,6 +1,7 @@
 #datasets
 
 *.DS_Store
+*.tex
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
