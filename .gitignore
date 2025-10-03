@@ -3,11 +3,20 @@ visualizations/downstream_compare_outputs/*.pkl
 
 .DS_Store
 
+*.DS_Store
+*.tex
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 *.virtual_documents/src/
+
+# big files
+*.pptx
+*.pkl
+*.json
+*.jsonl
 
 # C extensions
 *.so
