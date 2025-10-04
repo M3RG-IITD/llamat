@@ -1,6 +1,6 @@
-# 🧪 LLaMAT Agent Suite
+# 🧪 LLaMat Agent Suite
 
-A comprehensive agent suite for materials science applications, featuring both interactive chat capabilities and Named Entity Recognition (NER) functionality using your local llamat-2-chat model.
+A comprehensive agent suite for materials science applications, featuring both interactive chat capabilities and Named Entity Recognition (NER) functionality using your local LLaMat-2-chat model.
 
 ## Features
 
@@ -27,7 +27,7 @@ A comprehensive agent suite for materials science applications, featuring both i
 pip install -r requirements.txt
 ```
 
-2. Make sure your local llamat-2 model is running at `http://localhost:8000`
+2. Make sure your local LLaMat-2 model is running at `http://localhost:8000`
 
 ## Usage
 
@@ -195,7 +195,7 @@ from ner_agent import NERAgent, NERConfig
 
 config = NERConfig(
     model_endpoint="http://localhost:8000/v1/completions",
-    model_name="llamat-2-chat",
+    model_name="LLaMat-2-chat",
     temperature=0.1,  # Lower temperature for more consistent extraction
     max_tokens=512
 )
@@ -345,7 +345,7 @@ agent/
 
 ### Model Not Available
 If you see "Model server is not available":
-1. Make sure your llamat-2 model is running
+1. Make sure your LLaMat-2 model is running
 2. Check that it's accessible at `http://localhost:8000`
 3. Verify the model endpoint in configuration
 4. Test the endpoint: `curl http://localhost:8000/v1/completions`
@@ -424,7 +424,7 @@ conversation = agent.export_conversation()
 - `requests` library for API calls
 - `streamlit` for web interface
 - `pickle` for conversation caching
-- Local llamat-2 model running on `http://localhost:8000`
+- Local LLaMat-2 model running on `http://localhost:8000`
 
 ## 🤝 Contributing
 

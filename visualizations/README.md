@@ -64,7 +64,7 @@ The dashboard expects the `_downstream_eval.json` file with the following struct
 
 The dashboard supports all 16 models from the evaluation:
 - LLaMA-2, LLaMA-2-chat, LLaMA-3, LLaMA-3-chat
-- llamat2, llamat2-chat, llamat3, llamat3-chat
+- LLaMat-2, LLaMat-2-chat, LLaMat-3, LLaMat-3-chat
 - Claude-3-Opus, Claude-3-Haiku, Claude-3.5-Sonnet
 - GPT-4, GPT-4o
 - Gemini-1.5-flash, Gemini-1.5-Flash-8b, Gemini-1.5-pro
