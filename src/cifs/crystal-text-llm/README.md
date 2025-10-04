@@ -1,6 +1,30 @@
-# Batch Generation for All Rows
+# CIF Dashboard, Visualization and Batch Generation
 
-## Usage Instructions
+## Launching streamlit dashboard
+
+```
+streamlit run streamlit_app.py
+```
+
+### Examples
+
+The following snapshot shows the conditional generation exmple with compositional constraint.
+
+![CONGEN_COMP](dash_figs/001_cif_gen_demo.png)
+
+The following snapshot shows the conditional generation exmple with compositional constraint.
+
+![CONGEN_COMP](dash_figs/001_cif_gen_demo.png)
+
+The following snapshot shows the generated output.
+
+![CONGEN_COMP_out](dash_figs/002_cif_conditional.png)
+
+The same dashboard also has the facility to visualise locally stored CIFs. Here is an example of visualising AMS_CIF
+![local_viz](dash_figs/003_cif_exploration.png)
+
+
+## Usage Instructions for batch generations
 
 ### Sequential Processing (Recommended for single GPU)
 ```python
@@ -61,6 +85,7 @@ result_df = batch_generate_parallel(
    - Memory overflow
    - Request timeouts
    - Server instability
+
 
 ## Features
 
