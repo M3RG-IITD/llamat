@@ -180,7 +180,7 @@ def main():
     st.markdown("""
     <div style="text-align: center; padding: 2rem 0; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px; margin-bottom: 2rem;">
         <h1 style="margin: 0; font-size: 2.5rem;">🧪 Materials Science Chat</h1>
-        <p style="margin: 0.5rem 0 0 0; font-size: 1.2rem; opacity: 0.9;">Powered by LlaMat-2-Chat Model</p>
+        <p style="margin: 0.5rem 0 0 0; font-size: 1.2rem; opacity: 0.9;">Powered by LLaMat-2-Chat Model</p>
     </div>
     """, unsafe_allow_html=True)
     
