@@ -1,6 +1,6 @@
 # Overleaf Tables for Composition and Space Group Matching Evaluation
 
-This directory contains LaTeX tables for Overleaf that summarize the composition and space group matching evaluation statistics for LLaMaT-2 and LLaMaT-3 models.
+This directory contains LaTeX tables for Overleaf that summarize the composition and space group matching evaluation statistics for LLaMat-2 and LLaMat-3 models.
 
 ## Files Available
 
@@ -63,13 +63,13 @@ You can extract individual tables from `evaluation_results_table.tex` and use th
 ## Key Statistics Highlighted
 
 ### Overall Performance
-- **LLaMaT-2**: 79.1% match rate
-- **LLaMaT-3**: 5.5% match rate
+- **LLaMat-2**: 79.1% match rate
+- **LLaMat-3**: 5.5% match rate
 - **Performance Gap**: 73.6 percentage points
 
 ### Best Performance by Category
-- **Element Count**: LLaMaT-2: 79.1% (≤5 elements), LLaMaT-3: 25.0% (6-10 elements)
-- **Space Group**: LLaMaT-2: 90.8% (Cubic), LLaMaT-3: 8.5% (Triclinic)
+- **Element Count**: LLaMat-2: 79.1% (≤5 elements), LLaMat-3: 25.0% (6-10 elements)
+- **Space Group**: LLaMat-2: 90.8% (Cubic), LLaMat-3: 8.5% (Triclinic)
 
 ### Data Distribution
 - **Element Count**: 99.9% have ≤5 elements
@@ -80,7 +80,7 @@ You can extract individual tables from `evaluation_results_table.tex` and use th
 ### Visual Design
 - **Bold formatting** for key performance metrics
 - **Color coding** through bold text for easy comparison
-- **Performance gap** column showing LLaMaT-2 advantage
+- **Performance gap** column showing LLaMat-2 advantage
 - **Percentage distribution** in parentheses for context
 
 ### Data Organization
