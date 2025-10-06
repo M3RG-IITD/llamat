@@ -51,6 +51,13 @@ for detailed results please look at our paper [Foundational Large Language Model
 - [evaluation_codes](evaluation_codes)
   Contains code for running benchmark evaluations
 
+## Additional Documentation
+- [agent/README.md](agent/README.md) - Interactive chat and NER agents for materials science applications
+- [evaluation_codes/README.md](evaluation_codes/README.md) - Instructions for running MatNLP and MatSIE evaluations
+- [visualizations/README.md](visualizations/README.md) - Streamlit dashboard for downstream evaluation analysis
+- [src/cifs/crystal-text-llm/README.md](src/cifs/crystal-text-llm/README.md) - CIF generation dashboard and batch processing tools
+- [src/cifs/crystal-text-llm/conditional_gen_eval/README.md](src/cifs/crystal-text-llm/conditional_gen_eval/README.md) - Conditional generation evaluation results and analysis
+
 ---
 ## Pretraining
 Pretraining was performed on a text corpus of total 30B tokens, interleaved in the following way:

@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Page configuration
 st.set_page_config(
-    page_title="LLaMAT Downstream Evaluation Dashboard",
+    page_title="LLaMat Downstream Evaluation Dashboard",
     page_icon="🧪",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -161,7 +161,7 @@ def calculate_task_statistics(data, task, dataset):
 
 def main():
     # Header
-    st.markdown('<h1 class="main-header">🧪 LLaMAT Downstream Evaluation Dashboard</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">🧪 LLaMat Downstream Evaluation Dashboard</h1>', unsafe_allow_html=True)
     
     # Sidebar for file upload and configuration
     st.sidebar.header("📁 Data Configuration")
