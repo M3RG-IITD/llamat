@@ -1,5 +1,5 @@
 
-## First download the orca dataset(https://huggingface.co/datasets/Open-Orca/OpenOrca/blob/main/3_5M-GPT3_5-Augmented.parquet) and convert it to jsonl format and store in ../../datasets/orca/orca_train.jsonl
+## First download the orca dataset(https://huggingface.co/datasets/Open-Orca/OpenOrca/blob/main/3_5M-GPT3_5-Augmented.parquet) and convert it to jsonl format and store in ../datasets/orca/orca_train.jsonl
 ## then we run these to preprocess the data based on llama3 and llama2
 
 mkdir -p ../datasets/orca
