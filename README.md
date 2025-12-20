@@ -85,25 +85,41 @@ the output and error file will be stored in the same directory and their exact n
         
         python3 {doping, mof1, mof2, discomat}_run.py <CUDA_GPU_NUMBER> <MODEL_PATH> <SAVE_NAME_PREFIX>                               
 
-Output will be stored as <SAVE_NAME_PREFIX>_{doping, mof1, mof2, discomat}_test.pkl in the same folder 
+Output will be stored as <SAVE_NAME_PREFIX>_{doping, mof1, mof2, discomat}_test.pkl in the same folder. 
+here is an example command,
+        python3 mof1_run.py 0 ../models/llamat3chat_hf llamat3chat
+running the above code will run the model provided on the doping tasks and produce an output pickle file with the name llamat3chat_mof1_test.pkl, which can be passed to the evaluation function.
 
 ### running evaluation on the output file:
+        python3 {doping, mof1, mof2, discomat}_eval.py <SAVE_NAME_PREFIX>                           
         
-        python3 {doping, mof1, mof2, discomat}_eval.py <SAVE_NAME_PREFIX>                               
-
 This will print the output to the screen along the metrics discussed in the paper.
-
-
+here is an example command,
+        python3 mof1_eval.py llamat3chat
+this will search for llamat3chat_mof1_test.pkl file in the same directory, and give the results for the model on the mof1 (General materials science) tasks. 
+      
 ---
 ## Instruction finetuning
 
 The weights of the input model must be stored in the Megatron format. To convert model weights from the HuggingFace format to Megatron format, `wt_fromhf.sh` is used. For the reverse conversion `wt_tohf.sh` is used. The model weights resulting from IFT are stored in the HF format to facilitate inference. After downloading the model from huggingface, this conversion is necessary for training.
 
+### Step 1. OpenOrca finetuning.
+We follow 2 step finetuning. First the model is trained on OpenOrca which is a generic IFT dataset. To run this finetuning, simply make the required path changes in `src/run_orca_ift.sh`, providing paths for input base model and output location, and the place where OpenOrca data is loaded. Further precise instructions are provided in `src/run_orca_ift.sh` itself. to run this, simply call bash on it while in the src directory. 
 
-We follow 2 step finetuning. First the model is trained on OpenOrca which is a generic IFT dataset. To run this finetuning, simply make the required path changes in `src/run_orca_ift.sh` and run it. 
-for the next finetuning step, make the necessary path changes in the `src/train_repo.sh` file and run by calling `bash train_repo.sh` (while in the src folder). 
+        bash run_orca_ift.sh
+
+in the output path, the trained model will be present in huggingface format in the "release/hf" directory, as well as in meditron format in the "release/iter_0009000" directory.
+
+### Step 2. Materials science specific finetuning. 
+To run the next finetuning step, make the necessary path changes in the `src/train_repo.sh` file similarly, and make the base model as the output path given in the previous step. 
+to start training, go in the src directory and run the following command
+        bash train_repo.sh
+
+this will also create the final model in both huggingface and meditron formats.
 
 ### General Command:
+the following is the general command we use for finetuning within `src/run_orca_ift.sh` and `src/train_repo.sh`. 
+
 ```
 sh ft_pipeline.sh <load_model_path> <save_model_path> <model_iteration_to_finetune> <train_path>\
 <val_path> <epochs> <number of docs in train set> <log_file_name> <llama2/llama3> <port number>
