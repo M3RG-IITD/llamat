@@ -97,15 +97,19 @@ the output and error files will be stored in the same directory and their exact 
 
 Output will be stored as <SAVE_NAME_PREFIX>_{doping, mof1, mof2, discomat}_test.pkl in the same folder. 
 here is an example command,
+
         python3 mof1_run.py 0 ../models/llamat3chat_hf llamat3chat
+        
 running the above code will run the model provided on the doping tasks and produce an output pickle file with the name llamat3chat_mof1_test.pkl, which can be passed to the evaluation function.
 
 #### running evaluation on the output file:
         python3 {doping, mof1, mof2, discomat}_eval.py <SAVE_NAME_PREFIX>                           
         
 This will print the output to the screen along the metrics discussed in the paper.
-here is an example command,
+here is an example command to evaluate mof1 tasks,
+
         python3 mof1_eval.py llamat3chat
+        
 this will search for llamat3chat_mof1_test.pkl file in the same directory, and give the results for the model on the mof1 (General materials science) tasks. 
       
 ---
