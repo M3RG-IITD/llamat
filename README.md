@@ -127,9 +127,10 @@ in the output path, the trained model will be present in huggingface format in t
 ### Step 2. Materials science specific finetuning. 
 To run the next finetuning step, make the necessary path changes in the `src/train_repo.sh` file similarly, and make the base model as the output path given in the previous step. 
 to start training, go in the src directory and run the following command
+
         bash train_repo.sh
 
-this will also create the final model in both huggingface and meditron formats.
+this will also create the final model in both huggingface and meditron formats. the huggingface format is used for all the evaluations.
 
 ### General Command:
 the following is the general command we use for finetuning within `src/run_orca_ift.sh` and `src/train_repo.sh`. 
