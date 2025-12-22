@@ -13,8 +13,8 @@ from tqdm import tqdm, trange
 import torch
 import math
 
-if(len(sys.argv) < 3):
-    print("Usage: python doping_llamat3.py <gpu_id> <model_name>")
+if(len(sys.argv) < 4):
+    print("Usage: python doping_llamat3.py <gpu_id> <model_name> <prefix_savename>")
     sys.exit(1)
 
 os.environ['CUDA_VISIBLE_DEVICES']=str(sys.argv[1]); 
