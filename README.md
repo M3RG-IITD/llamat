@@ -91,6 +91,8 @@ the output and error files will be stored in the same directory and their exact 
 
 ### Instructions to run structured information extraction evaluations:
 
+the inference and evaluation code for our MatSIE tasks determine how to split the output based on the checkpoint name, hence when running for LLaMat-2 model variants (LLaMat-2 and LLaMat-2-chat), keep the name "llamat2" as a substring in the checkpoint name, and similarly keep "llamat3" as a substring for LLaMat-3 variants (LLaMat-3-chat or LLaMat-3). 
+
 #### Generating the output pickle file:
         
         python3 {doping, mof1, mof2, discomat}_run.py <CUDA_GPU_NUMBER> <MODEL_PATH> <SAVE_NAME_PREFIX>                               
@@ -101,6 +103,7 @@ here is an example command,
         python3 mof1_run.py 0 ../models/llamat3chat_hf llamat3chat
         
 running the above code will run the model provided on the doping tasks and produce an output pickle file with the name llamat3chat_mof1_test.pkl, which can be passed to the evaluation function.
+For running inference on these tasks using other models, we have provided examples in `src/SIE_external` for GPT, Claude, and Gemini for reference. 
 
 #### running evaluation on the output file:
         python3 {doping, mof1, mof2, discomat}_eval.py <SAVE_NAME_PREFIX>                           
