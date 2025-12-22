@@ -260,6 +260,8 @@ for filenum in range(1):
             # print("test_json is", test_json);
             if(test_json == []):
                 json.loads('(])'); #raises a jsonDecodeError.
+            if isinstance(test_json, dict):
+                test_json = [test_json]
             if isinstance(test_json, str):
                 raise Exception("found test_json taht is string: ", test_json);
                 try:
