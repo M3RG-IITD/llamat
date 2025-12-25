@@ -50,6 +50,8 @@ for detailed results please look at our paper [Foundational Large Language Model
   Code used for creating the plots used in the paper
 - [evaluation_codes](evaluation_codes)
   Contains code for running benchmark evaluations
+- [agent](agent)
+  Code for launching agentic applications
 
 ## Additional Documentation
 - [agent/README.md](agent/README.md) - Interactive chat and NER agents for materials science applications
