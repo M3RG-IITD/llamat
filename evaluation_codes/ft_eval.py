@@ -18,7 +18,6 @@ from transformers import AutoTokenizer, LlamaTokenizer
 import datetime
 from functools import reduce
 from huggingface_hub import login
-# login('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')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--checkpoint', type=str, help="Path to the checkpoint to run inference on")
@@ -34,15 +33,10 @@ if args.num_gpu == -1:
 valfile = []
 with open(args.valfile, 'r') as f:
     valfile = [json.loads(line) for line in f.readlines()]
-    
-# valfile = json.load(open(args.valfile, 'r'))
-# valfile = [i for i in valfile if i['task'] != 'ner']
 
 valfile = valfile
 
 valinputs = [f"<|im_start|>system\n{i['system']}<|im_end|>\n"+f"<|im_start|>question\n{i['question']}<|im_end|>\n"+"<|im_start|>answer\n" for i in valfile]
-
-# print(valinputs[0])
 
 init_seed = 2
 args.seed = 1
@@ -405,26 +399,7 @@ prefix = args.checkpoint.split('/')[-3] + '-' + args.checkpoint.split('/')[-2]
 now = datetime.datetime.now()
 datetimestring = now.strftime("%y-%m-%d-%H-%M")
 
-combined_df.to_csv(f'/home/cse/btech/cs1200389/MatLlama/MatLLaMA/src/csvs/{prefix}-{datetimestring}.csv')
 
-# df_sum = reduce(lambda x, y: x.add(y, fill_value=0), daddy_df)
-# df_mean = df_sum / len(daddy_df)
-# df_concat = pd.concat(daddy_df)
-# df_std = df_concat.groupby(df_concat.index).std()
-
-# df_mean.columns = pd.MultiIndex.from_tuples([(i[0], f"{i[1]}_mean") for i in df_mean.columns])
-# df_std.columns = pd.MultiIndex.from_tuples([(i[0], f"{i[1]}_std") for i in df_std.columns])
-
-# combined_df = pd.concat([df_mean, df_std], axis=1)
-# combined_df = combined_df.sort_index(axis=1).apply(lambda x : round(x,5))
-
-
-# print(f"===eval over average of {args.num_seeds} runs===")
-# print(combined_df.to_string())
-
-# prefix = args.checkpoint.split('/')[-1]
-
-# now = datetime.datetime.now()
-# datetimestring = now.strftime("%y-%m-%d-%H-%M")
-
-# combined_df.to_csv(f'csvs/{prefix}-{datetimestring}.csv')
+folder_name = 'results'
+os.makedirs(folder_name, exist_ok=True)
+combined_df.to_csv(f'results/{prefix}-{datetimestring}.csv')
