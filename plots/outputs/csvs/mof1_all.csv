@@ -1,0 +1,17 @@
+model,formula|||name,formula|||structure_or_phase,formula|||applications,formula|||description
+llamat3-chat,0,0.167,0.435,0.182
+llamat3,0.222,0.275,0.579,0.306
+llama3-chat,0,0.121,0.413,0.118
+llama3,0.235,0.187,0.631,0.27
+llamat2-chat,0.125,0.567,0.574,0.255
+llamat2,0.125,0.609,0.6,0.385
+llama2-chat,0.095,0.371,0.61,0.245
+llama2,0.1,0.34,0.556,0.242
+Claude-3.5-Sonnet,0.059,0.039,0.121,0.007
+Claude-3-Opus,0.038,0.036,0.024,0.006
+Claude-3-Haiku,0.062,0.031,0.067,0.013
+Gemini-1.5-pro,0,0.04,0.034,0.008
+Gemini-1.5-flash,0.045,0.041,0.19,0.013
+Gemini-1.5-Flash-8b,0.017,0.071,0.199,0.014
+GPT-4o,0,0.033,0.092,0.011
+GPT-4,0.036,0.017,0.066,0.01
