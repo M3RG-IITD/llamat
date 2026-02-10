@@ -1,7 +1,7 @@
 # Contains evaluation code for MatNLP and MatSIE datasets
 
 ### Environment setup downstream evaluation
-We also provide a complete environment that can be used for inference on our matNLP tasks, however note that it is different from the one used for training. 
+We also provide a complete environment that can be used for inference on our matNLP tasks, however note that it is different from the one used for training. You can find the files in the environment folder. We are also sharing a definition file, you can use it to setup the container.
 
 ```bash
 conda env create -f infer_env_downstream.yaml

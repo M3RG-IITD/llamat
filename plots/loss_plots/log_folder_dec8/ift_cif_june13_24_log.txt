@@ -1,0 +1,444 @@
+ft_pipeline.sh: 36: [[0: not found
+2559
+/datasets-alt/mat_llama/iit_ckpt/iit0/
+/datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9/
+/datasets-alt/mat_llama/june9_data/
+/datasets-alt/mat_llama/june9_data/
+1
+3453189
+ift_cif
+llama2
+========Adding embeddings in the model for <|im_start|> and <|im_end|>========
+Loaded checkpoint_loader_megatron as the loader.
+Loaded checkpoint_saver_megatron as the saver.
+Starting saver...
+Starting loader...
+overriding iteration 2559 read from checkpoint with specified iteration 2559
+This is the arguments from the loaded checkpoint.
+Namespace(num_layers=32, encoder_num_layers=32, decoder_num_layers=None, hidden_size=4096, ffn_hidden_size=11008, num_attention_heads=32, num_attention_heads_kv=32, kv_channels=128, max_position_embeddings=4096, make_vocab_size_divisible_by=128, layernorm_epsilon=1e-05, apply_residual_connection_post_layernorm=False, use_bias=False, use_rms_norm=True, use_post_ln=False, onnx_safe=None, glu_activation='swiglu', position_embedding_type=<PositionEmbeddingType.rotary: 1>, rope_scaling_factor=1.0, rope_theta=10000.0, parallel_attn=False, parallel_layernorm=False, tie_embed_logits=False, sliding_window_size=None, attention_dropout=0.0, hidden_dropout=0.0, lima_dropout=False, weight_decay=0.1, start_weight_decay=0.1, end_weight_decay=0.1, weight_decay_incr_style='constant', clip_grad=1.0, adam_beta1=0.9, adam_beta2=0.95, adam_eps=1e-05, sgd_momentum=0.9, micro_batch_size=2, global_batch_size=512, rampup_batch_size=None, recompute_granularity='selective', distribute_saved_activations=False, recompute_method=None, recompute_num_layers=1, train_iters=2559, skip_iters=[], train_samples=None, log_interval=1, exit_interval=None, exit_duration_in_mins=None, exit_signal_handler=False, tensorboard_dir='/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/cif_inter_2/tensorboards/llama2-7b-tp1-pp4', masked_softmax_fusion=True, bias_gelu_fusion=False, bias_dropout_fusion=False, use_flash_attn=True, optimizer='adam', dataloader_type='cyclic', async_tensor_model_parallel_allreduce=True, no_persist_layer_norm=False, sequence_parallel=False, gradient_accumulation_fusion=True, seed=1234, data_parallel_random_init=False, init_method_std=0.02, init_method_xavier_uniform=False, lr=0.0003, lr_decay_style='cosine', lr_decay_iters=2559, lr_decay_samples=None, lr_warmup_fraction=None, lr_warmup_iters=120, lr_warmup_samples=0, min_lr=3e-05, override_opt_param_scheduler=False, use_checkpoint_opt_param_scheduler=False, save='/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/cif_inter_2', save_interval=100, no_save_optim=None, no_save_rng=None, load='/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/cif_inter_2', load_iters=None, no_load_optim=None, no_load_rng=None, finetune=False, perform_initialization=True, use_checkpoint_args=True, fp16=False, bf16=True, loss_scale=None, initial_loss_scale=4294967296, min_loss_scale=1.0, loss_scale_window=1000, hysteresis=2, fp32_residual_connection=False, apply_query_key_layer_scaling=True, attention_softmax_in_fp32=False, accumulate_allreduce_grads_in_fp32=True, fp16_lm_cross_entropy=False, tensor_model_parallel_size=1, pipeline_model_parallel_size=4, pipeline_model_parallel_split_rank=None, num_layers_per_virtual_pipeline_stage=None, distributed_backend='nccl', DDP_impl='local', use_contiguous_buffers_in_local_ddp=True, scatter_gather_tensors_in_pipeline=True, use_ring_exchange_p2p=False, local_rank=0, use_cpu_initialization=None, empty_unused_memory_level=0, standalone_embedding_stage=False, use_distributed_optimizer=False, eval_only=False, eval_iters=1, eval_interval=200, data_path=None, split='969, 30, 1', train_data_path=['/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/cif_inter_text_document'], valid_data_path=['/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/cif_val_text_document'], test_data_path=['/scratch/civil/phd/cez198233/vaibhav_nlp/corpus/corpus_training/redp_val_text_document'], vocab_file='/scratch/cse/btech/cs1200448/llama-weights/7b/tokenizer.model', merge_file=None, vocab_extra_ids=0, vocab_extra_ids_list=None, seq_length=2048, variable_seq_lengths=False, scalar_loss_mask=0.0, encoder_seq_length=2048, decoder_seq_length=None, retriever_seq_length=256, sample_rate=1.0, mask_prob=0.15, short_seq_prob=0.1, mmap_warmup=False, num_workers=0, tokenizer_type='SentencePieceTokenizer', tokenizer_model=None, new_tokens=False, data_impl='infer', reset_position_ids=False, reset_attention_mask=False, eod_mask_loss=False, adlr_autoresume=False, adlr_autoresume_interval=1000, ict_head_size=None, biencoder_projection_dim=0, biencoder_shared_query_context_model=False, ict_load=None, bert_load=None, titles_data_path=None, query_in_block_prob=0.1, use_one_sent_docs=False, evidence_data_path=None, retriever_report_topk_accuracies=[], retriever_score_scaling=False, block_data_path=None, embedding_path=None, indexer_batch_size=128, indexer_log_interval=1000, num_classes=1000, img_h=224, img_w=224, num_channels=3, patch_dim=16, classes_fraction=1.0, data_per_class_fraction=1.0, data_sharding=True, head_lr_mult=1.0, iter_per_epoch=1250, dino_local_img_size=96, dino_local_crops_number=10, dino_head_hidden_size=2048, dino_bottleneck_size=256, dino_freeze_last_layer=1, dino_norm_last_layer=False, dino_warmup_teacher_temp=0.04, dino_teacher_temp=0.07, dino_warmup_teacher_temp_epochs=30, log_params_norm=False, log_num_zeros_in_grad=False, timing_log_level=0, barrier_with_L1_time=True, timing_log_option='minmax', tensorboard_log_interval=1, tensorboard_queue_size=1000, log_timers_to_tensorboard=True, log_batch_size_to_tensorboard=False, log_validation_ppl_to_tensorboard=True, log_memory_to_tensorboard=True, log_world_size_to_tensorboard=False, wandb_logger=False, wandb_project=None, wandb_entity='meditron', wandb_name=None, wandb_id=None, wandb_resume='allow', wandb_api_key=None, metrics=[], inference_batch_times_seqlen_threshold=512, max_tokens_to_oom=12000, fp8_e4m3=False, fp8_hybrid=False, fp8_wgrad=True, fp8_margin=0, fp8_interval=1, transformer_impl='local', fp8_amax_history_len=1, fp8_amax_compute_algo='most_recent', model_name='llama2', model_type='encoder_or_decoder', data_type='gpt', log_learning_rate_to_tensorboard=True, log_loss_scale_to_tensorboard=True, rank=0, world_size=8, iteration=2000, padded_vocab_size=32000, transformer_pipeline_model_parallel_size=4, data_parallel_size=2, virtual_pipeline_model_parallel_size=None, params_dtype=torch.bfloat16, consumed_train_samples=1310208, consumed_valid_samples=12800, do_train=1, do_valid=1, do_test=1, curr_iteration=2558)
+using world size: 4, data-parallel-size: 1, tensor-model-parallel size: 1, pipeline-model-parallel size: 4 
+setting global batch size to 1
+using torch.float32 for parameters ...
+setting number of micro-batches to constant 1
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_mix_prec_layer_norm_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_mix_prec_layer_norm_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_dense_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_dense_cuda...
+Building model ...
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:38: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:40: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+overriding iteration 2559 read from checkpoint with specified iteration 2559
+ loading checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+ checkpoint version 3.0
+  successfully loaded checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+using world size: 4, data-parallel-size: 1, tensor-model-parallel size: 1, pipeline-model-parallel size: 4 
+setting global batch size to 1
+using torch.float32 for parameters ...
+setting number of micro-batches to constant 1
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_mix_prec_layer_norm_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+Setting consumed_train_samples to 1310208 and consumed_valid_samples to 12800
+ninja: no work to do.
+Loading extension module fused_mix_prec_layer_norm_cuda...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_dense_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+sending embeddings
+Building model ...
+overriding iteration 2559 read from checkpoint with specified iteration 2559
+ loading checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+ninja: no work to do.
+Loading extension module fused_dense_cuda...
+ checkpoint version 3.0
+  successfully loaded checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+received embeddings
+received lm_head
+ > padded vocab (size: 32007) with 121 dummy tokens (new size: 32128)
+Building model ...
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:38: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:40: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+word embeddings shape torch.Size([32128, 4096])
+Building model ...
+sending lm_head
+sending transformer layer 0
+sending transformer layer 1
+sending transformer layer 2
+sending transformer layer 3
+sending transformer layer 4
+sending transformer layer 5
+sending transformer layer 6
+sending transformer layer 7
+Building model ...
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:38: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/model/llama_model.py:40: UserWarning: Llama is not intended to use dropout
+  warnings.warn( "Llama is not intended to use dropout")
+overriding iteration 2559 read from checkpoint with specified iteration 2559
+ loading checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+lm_head shape torch.Size([32128, 4096])
+received transformer layer 0
+received transformer layer 1
+received transformer layer 2
+received transformer layer 3
+received transformer layer 4
+received transformer layer 5
+received transformer layer 6
+received transformer layer 7
+saving checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+ checkpoint version 3.0
+  successfully loaded checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+sending transformer layer 8
+sending transformer layer 9
+sending transformer layer 10
+sending transformer layer 11
+sending transformer layer 12
+sending transformer layer 13
+sending transformer layer 14
+sending transformer layer 15
+Building model ...
+overriding iteration 2559 read from checkpoint with specified iteration 2559
+ loading checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+ checkpoint version 3.0
+  successfully loaded checkpoint from /datasets-alt/mat_llama/iit_ckpt/iit0/ at iteration 2559
+  successfully saved checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+Building model ...
+received transformer layer 8
+received transformer layer 9
+received transformer layer 10
+received transformer layer 11
+received transformer layer 12
+received transformer layer 13
+received transformer layer 14
+received transformer layer 15
+saving checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+  successfully saved checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+Building model ...
+received transformer layer 16
+received transformer layer 17
+received transformer layer 18
+received transformer layer 19
+received transformer layer 20
+received transformer layer 21
+received transformer layer 22
+received transformer layer 23
+saving checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+  successfully saved checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+received transformer layer 24
+received transformer layer 25
+received transformer layer 26
+received transformer layer 27
+received transformer layer 28
+received transformer layer 29
+received transformer layer 30
+received transformer layer 31
+received final layernorm
+saving checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+  successfully saved checkpoint at iteration    2559 to /datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+=====Final=====
+Namespace(num_layers=32, encoder_num_layers=32, decoder_num_layers=None, hidden_size=4096, ffn_hidden_size=11008, num_attention_heads=32, num_attention_heads_kv=32, kv_channels=128, max_position_embeddings=4096, make_vocab_size_divisible_by=128, layernorm_epsilon=1e-05, apply_residual_connection_post_layernorm=False, use_bias=False, use_rms_norm=True, use_post_ln=False, onnx_safe=None, glu_activation='swiglu', position_embedding_type=<PositionEmbeddingType.rotary: 1>, rope_scaling_factor=1.0, rope_theta=10000.0, parallel_attn=False, parallel_layernorm=False, tie_embed_logits=False, sliding_window_size=None, attention_dropout=0.1, hidden_dropout=0.1, lima_dropout=False, weight_decay=0.01, start_weight_decay=0.01, end_weight_decay=0.01, weight_decay_incr_style='constant', clip_grad=1.0, adam_beta1=0.9, adam_beta2=0.999, adam_eps=1e-08, sgd_momentum=0.9, micro_batch_size=1, global_batch_size=1, rampup_batch_size=None, recompute_granularity=None, distribute_saved_activations=False, recompute_method=None, recompute_num_layers=1, train_iters=None, skip_iters=[], train_samples=None, log_interval=100, exit_interval=None, exit_duration_in_mins=None, exit_signal_handler=False, tensorboard_dir=None, masked_softmax_fusion=False, bias_gelu_fusion=False, bias_dropout_fusion=False, use_flash_attn=False, optimizer='adam', dataloader_type='single', async_tensor_model_parallel_allreduce=True, no_persist_layer_norm=False, sequence_parallel=False, gradient_accumulation_fusion=True, seed=1234, data_parallel_random_init=False, init_method_std=0.02, init_method_xavier_uniform=False, lr=None, lr_decay_style='linear', lr_decay_iters=None, lr_decay_samples=None, lr_warmup_fraction=None, lr_warmup_iters=0, lr_warmup_samples=0, min_lr=0.0, override_opt_param_scheduler=False, use_checkpoint_opt_param_scheduler=False, save='/datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab', save_interval=1, no_save_optim=True, no_save_rng=True, load=None, load_iters=None, no_load_optim=True, no_load_rng=True, finetune=False, perform_initialization=False, use_checkpoint_args=False, fp16=False, bf16=False, loss_scale=None, initial_loss_scale=4294967296, min_loss_scale=1.0, loss_scale_window=1000, hysteresis=2, fp32_residual_connection=False, apply_query_key_layer_scaling=True, attention_softmax_in_fp32=False, accumulate_allreduce_grads_in_fp32=False, fp16_lm_cross_entropy=False, tensor_model_parallel_size=1, pipeline_model_parallel_size=4, pipeline_model_parallel_split_rank=None, num_layers_per_virtual_pipeline_stage=None, distributed_backend='nccl', DDP_impl='local', use_contiguous_buffers_in_local_ddp=True, scatter_gather_tensors_in_pipeline=True, use_ring_exchange_p2p=False, local_rank=None, use_cpu_initialization=True, empty_unused_memory_level=0, standalone_embedding_stage=False, use_distributed_optimizer=False, eval_only=False, eval_iters=100, eval_interval=1000, data_path=None, split='969, 30, 1', train_data_path=None, valid_data_path=None, test_data_path=None, vocab_file=None, merge_file=None, vocab_extra_ids=0, vocab_extra_ids_list=None, seq_length=2048, variable_seq_lengths=False, scalar_loss_mask=0.0, encoder_seq_length=2048, decoder_seq_length=None, retriever_seq_length=256, sample_rate=1.0, mask_prob=0.15, short_seq_prob=0.1, mmap_warmup=False, num_workers=2, tokenizer_type='SentencePieceTokenizer', tokenizer_model=None, new_tokens=True, data_impl='infer', reset_position_ids=False, reset_attention_mask=False, eod_mask_loss=False, adlr_autoresume=False, adlr_autoresume_interval=1000, ict_head_size=None, biencoder_projection_dim=0, biencoder_shared_query_context_model=False, ict_load=None, bert_load=None, titles_data_path=None, query_in_block_prob=0.1, use_one_sent_docs=False, evidence_data_path=None, retriever_report_topk_accuracies=[], retriever_score_scaling=False, block_data_path=None, embedding_path=None, indexer_batch_size=128, indexer_log_interval=1000, num_classes=1000, img_h=224, img_w=224, num_channels=3, patch_dim=16, classes_fraction=1.0, data_per_class_fraction=1.0, data_sharding=True, head_lr_mult=1.0, iter_per_epoch=1250, dino_local_img_size=96, dino_local_crops_number=10, dino_head_hidden_size=2048, dino_bottleneck_size=256, dino_freeze_last_layer=1, dino_norm_last_layer=False, dino_warmup_teacher_temp=0.04, dino_teacher_temp=0.07, dino_warmup_teacher_temp_epochs=30, log_params_norm=False, log_num_zeros_in_grad=False, timing_log_level=0, barrier_with_L1_time=True, timing_log_option='minmax', tensorboard_log_interval=1, tensorboard_queue_size=1000, log_timers_to_tensorboard=False, log_batch_size_to_tensorboard=False, log_validation_ppl_to_tensorboard=False, log_memory_to_tensorboard=False, log_world_size_to_tensorboard=False, wandb_logger=False, wandb_project=None, wandb_entity='meditron', wandb_name=None, wandb_id=None, wandb_resume='allow', wandb_api_key=None, metrics=[], inference_batch_times_seqlen_threshold=512, max_tokens_to_oom=12000, fp8_e4m3=False, fp8_hybrid=False, fp8_wgrad=True, fp8_margin=0, fp8_interval=1, transformer_impl='local', fp8_amax_history_len=1, fp8_amax_compute_algo='most_recent', rank=0, world_size=4, transformer_pipeline_model_parallel_size=4, data_parallel_size=1, virtual_pipeline_model_parallel_size=None, params_dtype=torch.float32, consumed_train_samples=1310208, consumed_valid_samples=12800, model_name='llama2', model_type=<ModelType.encoder_or_decoder: 1>, padded_vocab_size=32128)
+=====Earlier=====
+namespace(model_type='llama2', num_layers=32, hidden_size=4096, seq_length=2048, num_attention_heads=32, max_position_embeddings=4096, tokenizer_type='SentencePieceTokenizer', iteration=2559, previous_tensor_parallel_size=1, previous_pipeline_parallel_size=4, true_vocab_size=32007, make_vocab_size_divisible_by=128, rope_theta=10000.0, num_attention_heads_kv=32, parallel_attn=False, parallel_layernorm=False, use_flash_attn=False, hidden_dropout=0.1, lima_dropout=False, use_bias=False, use_rms_norm=True, ffn_hidden_size=11008, glu_activation='swiglu', tie_embed_logits=False, params_dtype=torch.float32, sliding_window_size=None, position_embedding_type='rotary', consumed_train_samples=1310208, consumed_valid_samples=12800)
+Done!
+sending transformer layer 16
+sending transformer layer 17
+sending transformer layer 18
+sending transformer layer 19
+sending transformer layer 20
+sending transformer layer 21
+sending transformer layer 22
+sending transformer layer 23
+sending transformer layer 24
+sending transformer layer 25
+sending transformer layer 26
+sending transformer layer 27
+sending transformer layer 28
+sending transformer layer 29
+sending transformer layer 30
+sending transformer layer 31
+sending final layernorm
+Waiting for saver to complete...
+========Finetuning the model========
+
+Settings:
+RANK=0
+ADDR=localhost
+N_NODES=1
+DATA_ARGS=--train_data_path /datasets-alt/mat_llama/june9_data/ --valid_data_path /datasets-alt/mat_llama/june9_data/
+CHECKPOINT_PATH=/datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559/added-vocab
+TRAINED_PATH=/datasets-alt/mat_llama/megatron_llama/ft_ckpt_june9//2559
+MODEL=llama2
+TP=1
+PP=4
+MICRO_BATCH=2
+GLOBAL_BATCH=64
+INSTRUCT=1
+COMMON_ARGS=--use_flash_attn --no_bias_gelu_fusion --seq_length 2048 --log_interval 1 --save_interval 500 --eval_interval 500 --eval_iters 10 --hidden_dropout 0.0 --position_embedding_type rotary --no_bias_dropout_fusion --use_checkpoint_args --attention_dropout 0.0 --adam_beta1 0.9 --adam_beta2 0.95 --adam_eps 1e-5 --lr_decay_style cosine --lr_warmup_fraction 0.1 --lr 2e-5 --min_lr 2e-6 --weight_decay 0.1 --sequence_parallel --recompute_granularity selective --log_timers_to_tensorboard --scalar_loss_mask=0.0 --rope_scaling_factor 1.0 --variable_seq_lengths --data_type instruction --metrics all --finetune --vocab_extra_ids_list <|im_start|>,<|im_end|> --train_iters 53960 --load_iters 2559
+EXTRA_ARGS=--vocab_file=./tokenizer_l2.model --use_rms_norm --glu_activation swiglu --no_tie_embed_logits --layernorm_epsilon 1e-5
+
+[rank0]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank2]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank4]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank6]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank3]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank1]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank5]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+[rank7]:[W init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/optimizer/optimizer.py:371: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at /opt/pytorch/pytorch/torch/csrc/tensor/python_tensor.cpp:83.)
+  self._scale_one = torch.cuda.FloatTensor([1.0])
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+            pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,    pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+    pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+    pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 268, in <module>
+    pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+    pretrain(args, data_provider, model_provider,  ModelType.encoder_or_decoder,
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 128, in pretrain
+    = build_train_valid_test_data_iterators(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+    = build_train_valid_test_data_iterators(    
+= build_train_valid_test_data_iterators(
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+    = build_train_valid_test_data_iterators(= build_train_valid_test_data_iterators(
+
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+= build_train_valid_test_data_iterators(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+    = build_train_valid_test_data_iterators(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+    = build_train_valid_test_data_iterators(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/training.py", line 969, in build_train_valid_test_data_iterators
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+        train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+        train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(    
+
+train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+    train_ds, valid_ds, test_ds = builder(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+        train_ds, valid_ds, test_ds = builder(train_ds, valid_ds, test_ds = builder(
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+        train_ds, valid_ds, test_ds = builder(train_ds, valid_ds, test_ds = builder(
+
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+train_ds, valid_ds, test_ds = builder(
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+train_ds, valid_ds, test_ds = builder(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+    train_ds, valid_ds, test_ds = build_train_valid_test_datasets_provider(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 179, in data_provider
+    train_ds, valid_ds, test_ds = builder(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 283, in build_train_valid_test_datasets
+    train_dataset = _build_dataset(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+            train_dataset = _build_dataset(dataset = _build_dataset_kernel(train_dataset = _build_dataset(
+    
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+    train_dataset = _build_dataset(  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+    train_dataset = _build_dataset(
+    train_dataset = _build_dataset(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+train_dataset = _build_dataset(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+train_dataset = _build_dataset(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 99, in _build_dataset
+        indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)dataset = _build_dataset_kernel(
+
+      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+dataset = _build_dataset_kernel(  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+        dataset = _build_dataset_kernel(dataset = _build_dataset_kernel(
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+    dataset = _build_dataset_kernel(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+    dataset = _build_dataset_kernel(
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+    dataset = _build_dataset_kernel(
+        indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 69, in _build_dataset_kernel
+indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)
+
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+    assert indexed_text is not None
+AssertionError
+        indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)    indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)
+indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+    
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+
+indexed_datasets = get_indexed_datasets_(data_prefix, data_impl, skip_warmup)      File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+
+assert indexed_text is not None
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/data/instruction_dataset.py", line 141, in get_indexed_datasets_
+AssertionError
+        assert indexed_text is not Noneassert indexed_text is not None
+
+        assert indexed_text is not NoneAssertionErrorassert indexed_text is not NoneAssertionError
+
+
+
+AssertionError
+AssertionError
+    assert indexed_text is not None
+AssertionError
+    assert indexed_text is not None
+AssertionError
+[2024-06-13 12:21:21,193] torch.distributed.elastic.multiprocessing.api: [WARNING] Sending process 1104 closing signal SIGTERM
+[2024-06-13 12:21:21,407] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 1097) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 351, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+../Megatron-LLM/finetune.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 1098)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 1099)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 1100)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[4]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 4 (local_rank: 4)
+  exitcode  : 1 (pid: 1101)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[5]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 5 (local_rank: 5)
+  exitcode  : 1 (pid: 1102)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[6]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 1103)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-13_12:21:21
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1097)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+3453189 53956.078125
+Finetuning
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/ft_sft.py", line 92, in <module>
+    main(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/ft_sft.py", line 69, in main
+    finetune(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/ft_sft.py", line 65, in finetune
+    execute(cmd)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/ft_sft.py", line 16, in execute
+    assert proc.wait() == 0
+AssertionError

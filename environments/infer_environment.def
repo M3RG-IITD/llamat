@@ -1,0 +1,35 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:24.05-py3
+
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && apt-get install -y git-lfs
+
+    python -m pip install --upgrade pip
+   
+    pip install --upgrade \
+        "transformers>=4.44.0,<4.45.0" \
+        vllm==0.6.0 \
+        vllm-flash-attn==2.6.1 \
+        xformers==0.0.27.post2 \
+        datasets==2.21.0 \
+        pandas==2.2.2 \
+        scikit-learn==1.5.1 \
+        "tqdm>=4.66.5" \
+        sentencepiece==0.2.0    \
+        Levenshtein \
+        huggingface_hub \
+        jellyfish
+
+    apt-get clean
+    rm -rf /var/lib/apt/lists/*
+
+%environment
+    export HF_HOME=""
+    export HF_CACHE=""
+    export TRANSFORMERS_CACHE=""
+    export HF_DATASETS_CACHE=""    
+    export WANDB_DIR=""
+    export HF_HUB_ENABLE_XET_BACKEND=0
+    export HF_HUB_DISABLE_SYMLINKS=1
+    export BNB_CUDA_VERSION=124

@@ -1,0 +1,14 @@
+
+Settings:
+RANK=0
+ADDR=10.42.95.137
+N_NODES=2
+DATA_PATH=/datasets-alt/mat_llama/may11_processed_data/train_llama3_text_document
+CHECKPOINT_PATH=/datasets-alt/mat_llama/may11_ckpt_8b/
+MODEL=llama3
+TP=1
+PP=4
+MICRO_BATCH=2
+GLOBAL_BATCH=1024
+EVAL_ITERS=217
+

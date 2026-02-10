@@ -1,0 +1,205 @@
+pretrain_worker.sh: 69: 8: not found
+
+Settings:
+RANK=1
+ADDR=10.42.95.137
+N_NODES=2
+DATA_PATH=/datasets-alt/mat_llama/may11_processed_data/train_llama3_text_document
+CHECKPOINT_PATH=/datasets-alt/mat_llama/may11_ckpt_8b/
+MODEL=llama3
+TP=1
+PP=4
+MICRO_BATCH=2
+GLOBAL_BATCH=1024
+EVAL_ITERS=217
+
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+Traceback (most recent call last):
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/src/../Megatron-LLM/finetune.py", line 258, in <module>
+    initialize_megatron(extra_args, args_defaults)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/initialize.py", line 47, in initialize_megatron
+    set_global_variables(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 96, in set_global_variables
+    _ = _build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/global_vars.py", line 116, in _build_tokenizer
+    _GLOBAL_TOKENIZER = build_tokenizer(args)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 39, in build_tokenizer
+    tokenizer = _Tiktoken(args.vocab_file, vocab_extra_ids_list=args.vocab_extra_ids_list, new_tokens=args.new_tokens)
+  File "/workspace/ai-mat-top/iitd_nlp/MatLLaMA/Megatron-LLM/megatron/tokenizer/tokenizer.py", line 569, in __init__
+    print("DEBUG LINE!!!!!", self._vocab["<|im_start|>"])
+KeyError: '<|im_start|>'
+[2024-06-20 03:02:55,870] torch.distributed.elastic.multiprocessing.api: [ERROR] failed (exitcode: 1) local_rank: 0 (pid: 3803) of binary: /usr/bin/python
+Traceback (most recent call last):
+  File "/usr/local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 351, in wrapper
+    return f(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+../Megatron-LLM/finetune.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 9 (local_rank: 1)
+  exitcode  : 1 (pid: 3804)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 10 (local_rank: 2)
+  exitcode  : 1 (pid: 3805)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 11 (local_rank: 3)
+  exitcode  : 1 (pid: 3806)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[4]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 12 (local_rank: 4)
+  exitcode  : 1 (pid: 3807)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[5]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 13 (local_rank: 5)
+  exitcode  : 1 (pid: 3808)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[6]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 14 (local_rank: 6)
+  exitcode  : 1 (pid: 3809)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[7]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 15 (local_rank: 7)
+  exitcode  : 1 (pid: 3810)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2024-06-20_03:02:55
+  host      : mat-megatron-may22-worker-8vvxf
+  rank      : 8 (local_rank: 0)
+  exitcode  : 1 (pid: 3803)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -60,7 +60,6 @@ def load_jsonl(path):
         a = f.readlines()
         g = [json.loads(i) for i in a]
     return g
-# valfile = load_jsonl("./downstream_compare_outputs/val_downstream.jsonl")
 
 def load_all_questions(file_path):
     try:

@@ -4,7 +4,6 @@ import argparse
 import json
 import sys
 import pandas as pd
-from monty.serialization import loadfn
 import pprint
 # import seaborn as sns
 import matplotlib.pyplot as plt
@@ -31,9 +30,7 @@ if(len(sys.argv) < 2):
     sys.exit(0);
 current = sys.argv[1] + "_doping_test.pkl"; #test_pkls[useidx]; 
 curname = sys.argv[1]; 
-#curname = '_'.join(current.split('_')[:3]);
-#if('orca' in current):
-#    curname = '_'.join(current.split('_')[:5]); 
+
 split_token = '<|im_end|>'; ## FOR LLAMA3 Generations
 if('llama2' in current or 'llamat2' in current):
     split_token = '\n an';  ## FOR LLAMA2 Generations

@@ -3,7 +3,6 @@ import argparse
 import json
 import sys
 import pandas as pd
-from monty.serialization import loadfn
 import pprint
 import matplotlib.pyplot as plt
 import jellyfish

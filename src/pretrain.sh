@@ -16,10 +16,7 @@ SIZE=$3
 
 LR="3e-4"
 
-# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/7b
-# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/hf-to-meditron-weights/8b-testing
 LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/llama3_pmc_ds
-# LOAD_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/llama2_debug
 SAVE_CHECKPOINT_PATH=/scratch/cse/btech/cs1200448/MatLlama/meditron-checkpoints/${EXP_NAME}
 
 TRAIN_DATA_PATH=/scratch/civil/phd/cez198233/vaibhav_nlp/pretrain_datasets/bin/train_pmc_llama3_text_document

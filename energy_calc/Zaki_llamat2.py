@@ -65,9 +65,5 @@ for file in tqdm(os.listdir(Folders["llamat2"])):
     LoadedStructure.calc=calculator
     Energy=LoadedStructure.get_total_energy()
     file_write.write(f"{counter},{int(file[:-4])},{Energy},\n")
-    # except:
-    #     Energy='NaN'
-    #     file_write.write(f"{counter},{int(file[:-4])},{Energy},\n")
     file_write.flush()
-    # OutputF1[file]= Energy
 file.close()
