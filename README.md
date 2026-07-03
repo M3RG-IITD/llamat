@@ -1,6 +1,6 @@
-# LLaMat 
-This repo contains all the data and code related to our paper [Foundational Large Language Models for Materials Research
-](https://arxiv.org/abs/2412.09560). 
+# LLaMat: Materials domain langauge model 
+This repo contains all the data and code related to the paper [A family of large language models for materials research with insights into model adaptability in continued pretraining
+](https://www.nature.com/articles/s42256-026-01199-8). 
 
 ## Table of contents
 ---
@@ -36,8 +36,8 @@ We performed domain adaptation of the models LLaMA-3 and LLaMA-2 for use in mate
   </tr>
 </table>
 
-for detailed results please look at our paper [Foundational Large Language Models for Materials Research
-](https://arxiv.org/abs/2412.09560). The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd). The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
+for detailed results please look at our paper [A family of large language models for materials research with insights into model adaptability in continued pretraining
+](https://www.nature.com/articles/s42256-026-01199-8). The models can be downloaded from [https://huggingface.co/m3rg-iitd](https://huggingface.co/m3rg-iitd). The codebase makes use of the [Megatron-LLM](https://github.com/epfLLM/Megatron-LLM) library for efficient training of LLMs. Go through their documentation to understand the basics. The environment for using our codebase is same as the one for Megatron-LLM.
 
 
 ---
@@ -155,9 +155,27 @@ Arguments flow from top to bottom in the above list.
 The Instruction finetuning process was performed on 8 Nvidia-A100 80GB GPUs via IIT Delhi's High Performance Computing facility. 
 
 ---
+##Citation
+
+Please cite the work as follows if you use the code or the LLM.
+
+@article{ahlawat2026family,
+  title={A family of large language models for materials research with insights into model adaptability in continued pretraining},
+  author={Ahlawat, Dhruv and Mishra, Vaibhav and Singh, Somaditya and Zaki, Mohd and Bihani, Vaibhav and Grover, Hargun Singh and Mishra, Biswajit and Miret, Santiago and Mausam and Krishnan, NM Anoop},
+  journal={Nature Machine Intelligence},
+  volume={8},
+  number={3},
+  pages={435--448},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
+}
+
+---
 ## Acknowledgements
 We used the codebase of [Meditron-LLM](https://github.com/epfLLM/meditron) for training our models on Nvidia A100 GPUs. 
 We thank the High-Performance Computing (HPC) facility at IIT Delhi
 for computational and storage resources. This work was partially supported by the Edinburgh International
 Data Facility (EIDF) and the Data-Driven Innovation Programme at the University of Edinburgh. The EIDF
 provided access to Cerebras CS2 clusters which were used for performing pretraining on our models.
+
+---
