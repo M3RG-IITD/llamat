@@ -157,8 +157,9 @@ The Instruction finetuning process was performed on 8 Nvidia-A100 80GB GPUs via 
 ---
 ##Citation
 
-Please cite the work as follows if you use the code or the LLM.
+If you use this code or the LLM, please cite the following work:
 
+```bibtex
 @article{ahlawat2026family,
   title={A family of large language models for materials research with insights into model adaptability in continued pretraining},
   author={Ahlawat, Dhruv and Mishra, Vaibhav and Singh, Somaditya and Zaki, Mohd and Bihani, Vaibhav and Grover, Hargun Singh and Mishra, Biswajit and Miret, Santiago and Mausam and Krishnan, NM Anoop},
@@ -169,6 +170,7 @@ Please cite the work as follows if you use the code or the LLM.
   year={2026},
   publisher={Nature Publishing Group UK London}
 }
+```
 
 ---
 ## Acknowledgements
